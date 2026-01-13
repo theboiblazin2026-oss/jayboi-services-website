@@ -1,0 +1,38 @@
+# Netlify Configuration for Jayboi Services
+
+# Build settings
+[build]
+  publish = "."
+  command = "echo 'Static site - no build needed'"
+
+# Security Headers - Apply to all pages
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevent clickjacking attacks
+    X-Frame-Options = "DENY"
+    
+    # Prevent MIME type sniffing
+    X-Content-Type-Options = "nosniff"
+    
+    # Enable XSS protection
+    X-XSS-Protection = "1; mode=block"
+    
+    # Referrer policy for privacy
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Permissions policy - restrict sensitive APIs
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Force HTTPS
+[[redirects]]
+  from = "http://jayboiservicesllc.com/*"
+  to = "https://jayboiservicesllc.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.jayboiservicesllc.com/*"
+  to = "https://jayboiservicesllc.com/:splat"
+  status = 301
+  force = true

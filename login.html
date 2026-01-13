@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Jayboi Services</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: var(--primary);
+        }
+
+        .login-card {
+            background: var(--secondary);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .error-msg {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-card">
+        <div class="login-header">
+            <h2 class="text-accent">Admin Portal</h2>
+            <p>Please log in to continue</p>
+        </div>
+
+        <div id="error-message" class="error-msg"></div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="admin@jayboiservices.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Log In</button>
+        </form>
+    </div>
+
+    <script type="module">
+        import { auth } from './js/firebase-config.js';
+        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const loginForm = document.getElementById('login-form');
+        const errorMsg = document.getElementById('error-message');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            errorMsg.style.display = 'none';
+
+            // Check if user clicked the "Create Account" button (we'll add checking logic via a flag or separate button)
+            // Ideally, we'd have two buttons. Let's infer or try sign in, if fails with user-not-found, offer create?
+            // Simpler: Just try sign in. If it fails, we can't auto-create for security.
+            // Let's add a separate button for "First Time Setup"
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                window.location.href = 'admin.html';
+            } catch (error) {
+                console.error(error);
+                if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+                    errorMsg.textContent = "Invalid email or password.";
+                } else {
+                    errorMsg.textContent = "Login Failed: " + error.message;
+                }
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>

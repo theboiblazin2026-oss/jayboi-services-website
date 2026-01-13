@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Pricing | Jayboi Services,LLC</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+            </a>
+            <div class="nav-wrapper">
+                <nav class="nav-pill">
+                    <a href="index.html">Home</a>
+                    <a href="services.html" class="active">Services</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="driver-login.html">Client Portal</a>
+                </nav>
+            </div>
+            <a href="contact.html" class="btn">Get Started</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero hero-small">
+            <div class="container">
+                <h1 class="text-center">Transparent Pricing</h1>
+                <p class="text-center" style="margin: 0 auto; color: var(--text-gray);">Comprehensive compliance
+                    packages tailored for your needs.</p>
+            </div>
+        </section>
+
+        <section class="container mb-large">
+            <div class="grid mb-large">
+                <div class="card" style="border: 1px solid var(--accent);">
+                    <div class="card-icon">🚛</div>
+                    <h3>Dispatching Services</h3>
+                    <p>We negotiate the best rates so you maximize profit on every load. Our comprehensive back-office
+                        support handles all the paperwork, letting you focus on driving.</p>
+                    <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">Service Fee: 8-10%</p>
+                    <ul style="margin-top: 1rem; color: var(--text-light);">
+                        <li>✅ Rate Negotiation</li>
+                        <li>✅ Route Planning</li>
+                        <li>✅ Driver Management</li>
+                        <li>✅ Invoicing & Collections</li>
+                    </ul>
+                </div>
+                <div class="card" style="border: 1px solid var(--accent);">
+                    <div class="card-icon">📄</div>
+                    <h3>2290 Filing Experts</h3>
+                    <p>Don't let the IRS slow you down. We provide fast, accurate, and electronic filing for your Heavy
+                        Highway Vehicle Use Tax (Form 2290).</p>
+                    <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">Service Fee: $100 + IRS fees
+                    </p>
+                    <ul style="margin-top: 1rem; color: var(--text-light);">
+                        <li>✅ Same-Day Proof (Schedule 1)</li>
+                        <li>✅ VIN Corrections</li>
+                        <li>✅ Weight Increase Filings</li>
+                        <li>✅ <strong>Secure & Fast</strong> processing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pricing-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Starting Price</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pricing-table-body">
+                        <!-- Dynamic Content -->
+                        <tr>
+                            <td colspan="2" style="text-align: center; padding: 2rem;">Loading live pricing...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- MEMBERSHIP PACKAGES SECTION -->
+            <div class="membership-packages" style="margin-top: 4rem;">
+                <h2 class="text-center" style="margin-bottom: 0.5rem;">Driver Membership Packages</h2>
+                <p class="text-center" style="color: var(--text-gray); margin-bottom: 2rem;">Choose the plan that fits
+                    your operation. All plans include portal access.</p>
+
+                <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+
+                    <!-- STARTER PACKAGE -->
+                    <div class="card" style="border: 2px solid var(--tertiary); position: relative;">
+                        <div style="text-align: center; padding: 1rem 0;">
+                            <span
+                                style="background: var(--tertiary); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase;">Starter</span>
+                            <h3 style="font-size: 2.5rem; margin: 1rem 0 0.25rem;">$49<span
+                                    style="font-size: 1rem; color: var(--text-gray);">/mo</span></h3>
+                            <p style="color: var(--text-gray); font-size: 0.9rem;">Perfect for owner-operators</p>
+                        </div>
+                        <hr style="border: none; border-top: 1px solid var(--tertiary); margin: 1rem 0;">
+                        <ul style="color: var(--text-light); list-style: none; padding: 0; margin: 0;">
+                            <li style="padding: 0.5rem 0;">✅ Driver Portal Access</li>
+                            <li style="padding: 0.5rem 0;">✅ Document Storage (5GB)</li>
+                            <li style="padding: 0.5rem 0;">✅ Basic AI Chat Support</li>
+                            <li style="padding: 0.5rem 0;">✅ Compliance Reminders</li>
+                            <li style="padding: 0.5rem 0; color: var(--text-gray);">❌ IFTA Filing Assistance</li>
+                            <li style="padding: 0.5rem 0; color: var(--text-gray);">❌ 2290 Filing Included</li>
+                            <li style="padding: 0.5rem 0; color: var(--text-gray);">❌ Priority Support</li>
+                        </ul>
+                        <a href="contact.html?plan=starter" class="btn"
+                            style="width: 100%; text-align: center; margin-top: 1.5rem;">Get Started</a>
+                    </div>
+
+                    <!-- PROFESSIONAL PACKAGE (MOST POPULAR) -->
+                    <div class="card"
+                        style="border: 2px solid var(--accent); position: relative; transform: scale(1.05);">
+                        <div
+                            style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--primary); padding: 4px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase;">
+                            Most Popular</div>
+                        <div style="text-align: center; padding: 1rem 0;">
+                            <span
+                                style="background: var(--accent); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: bold;">Professional</span>
+                            <h3 style="font-size: 2.5rem; margin: 1rem 0 0.25rem; color: var(--accent);">$149<span
+                                    style="font-size: 1rem; color: var(--text-gray);">/mo</span></h3>
+                            <p style="color: var(--text-gray); font-size: 0.9rem;">Full-service for serious drivers</p>
+                        </div>
+                        <hr style="border: none; border-top: 1px solid var(--accent); margin: 1rem 0;">
+                        <ul style="color: var(--text-light); list-style: none; padding: 0; margin: 0;">
+                            <li style="padding: 0.5rem 0;">✅ Everything in Starter</li>
+                            <li style="padding: 0.5rem 0;">✅ Document Storage (25GB)</li>
+                            <li style="padding: 0.5rem 0;">✅ <strong>Advanced AI Assistant</strong></li>
+                            <li style="padding: 0.5rem 0;">✅ <strong>IFTA Filing Assistance</strong></li>
+                            <li style="padding: 0.5rem 0;">✅ <strong>2290 Filing Included</strong></li>
+                            <li style="padding: 0.5rem 0;">✅ Priority Email Support</li>
+                            <li style="padding: 0.5rem 0; color: var(--text-gray);">❌ Dedicated Account Manager</li>
+                        </ul>
+                        <a href="contact.html?plan=professional" class="btn btn-primary"
+                            style="width: 100%; text-align: center; margin-top: 1.5rem;">Get Started</a>
+                    </div>
+
+                    <!-- FLEET PACKAGE -->
+                    <div class="card" style="border: 2px solid var(--tertiary); position: relative;">
+                        <div style="text-align: center; padding: 1rem 0;">
+                            <span
+                                style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase;">Fleet</span>
+                            <h3 style="font-size: 2.5rem; margin: 1rem 0 0.25rem;">$349<span
+                                    style="font-size: 1rem; color: var(--text-gray);">/mo</span></h3>
+                            <p style="color: var(--text-gray); font-size: 0.9rem;">For fleets & companies</p>
+                        </div>
+                        <hr style="border: none; border-top: 1px solid var(--tertiary); margin: 1rem 0;">
+                        <ul style="color: var(--text-light); list-style: none; padding: 0; margin: 0;">
+                            <li style="padding: 0.5rem 0;">✅ Everything in Professional</li>
+                            <li style="padding: 0.5rem 0;">✅ <strong>Unlimited Document Storage</strong></li>
+                            <li style="padding: 0.5rem 0;">✅ Up to <strong>10 Driver Accounts</strong></li>
+                            <li style="padding: 0.5rem 0;">✅ <strong>Dedicated Account Manager</strong></li>
+                            <li style="padding: 0.5rem 0;">✅ Custom Compliance Reports</li>
+                            <li style="padding: 0.5rem 0;">✅ Phone Support (Priority)</li>
+                            <li style="padding: 0.5rem 0;">✅ API Access for Integrations</li>
+                        </ul>
+                        <a href="contact.html?plan=fleet" class="btn"
+                            style="width: 100%; text-align: center; margin-top: 1.5rem;">Contact Sales</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mt-large text-center">
+                <h3>Need something custom?</h3>
+                <a href="contact.html" class="btn btn-primary" style="margin-top: 1rem;">Contact Us for a Quote</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">
+                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+            </div>
+            <div class="contact-item">
+                <span>📞</span> 470-484-4814
+            </div>
+            <div class="contact-item">
+                <span>✉️</span> info@jayboiservicesllc.com
+            </div>
+        </div>
+        <p>&copy; <span id="current-year"></span> Jayboi Services,LLC. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

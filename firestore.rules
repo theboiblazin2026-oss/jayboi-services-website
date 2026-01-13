@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to check if user is an admin
+    function isAdmin() {
+      return request.auth != null && (
+        request.auth.token.email == "theboiblazin2026@gmail.com" || 
+        request.auth.token.email == "admin@verify.com" ||
+        request.auth.token.email == "admin@nexus.com"
+      );
+    }
+    
+    // Website Content:
+    // 1. Public can READ (so the website works)
+    // 2. ONLY the Admins can WRITE (edit the dashboard)
+    match /content/{document=**} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+    
+    // User Management:
+    // 1. Users can read their own data
+    // 2. Users can only update non-sensitive fields (NOT status, membership, or createdBy)
+    // 3. Admins can read/write everyone's data
+    match /users/{userId} {
+      allow read: if request.auth != null && (
+        request.auth.uid == userId || isAdmin()
+      );
+      
+      // Users can update their own profile, but NOT sensitive fields
+      allow update: if request.auth != null && request.auth.uid == userId && (
+        // Prevent users from changing their own status, membership, or createdBy
+        !request.resource.data.diff(resource.data).affectedKeys().hasAny(['status', 'membership', 'createdBy'])
+      );
+      
+      // Only admins can create users or change sensitive fields
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+  }
+}

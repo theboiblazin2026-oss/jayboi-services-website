@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Jayboi Services</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: var(--primary);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Admin Sidebar */
+        .sidebar {
+            width: 250px;
+            background: var(--secondary);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--tertiary);
+        }
+
+        .sidebar-logo {
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .nav-item {
+            padding: 1rem;
+            color: var(--text-gray);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: var(--tertiary);
+            color: var(--accent);
+        }
+
+        .logout-btn {
+            margin-top: auto;
+            color: #ff6b6b;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 3rem;
+            overflow-y: auto;
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .card-panel {
+            background: var(--secondary);
+            padding: 2rem;
+            border-radius: var(--radius);
+            margin-bottom: 2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding: 1rem;
+                border-right: none;
+                border-bottom: 1px solid var(--tertiary);
+            }
+
+            .sidebar-logo {
+                font-size: 1.2rem;
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+
+            .nav-item {
+                padding: 0.75rem;
+                text-align: center;
+                font-size: 0.9rem;
+            }
+
+            .main-content {
+                padding: 1.5rem;
+            }
+
+            .header-bar {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .header-bar h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-logo">Admin Panel</div>
+        <div class="nav-item active">Dashboard</div>
+        <div class="nav-item">Core Solutions</div>
+        <div class="nav-item">Pricing Table</div>
+        <div class="nav-item">Theme & Media</div>
+        <div class="nav-item">AI Marketing</div>
+        <div class="nav-item">Settings</div>
+        <div class="nav-item">User Management</div>
+
+        <div class="nav-item logout-btn" id="logout-btn">Logout</div>
+    </div>
+
+    <div class="main-content">
+        <div class="header-bar">
+            <h2>Dashboard Overview</h2>
+            <div class="user-info" id="user-email">Loading...</div>
+        </div>
+
+        <!-- content-section: Dashboard Home -->
+        <div id="section-dashboard" class="content-section">
+            <div class="card-panel">
+                <h3>Welcome to your Control Center</h3>
+                <p>Here you can manage your website content. Changes made here will update the live site instantly once
+                    connected.</p>
+                <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+                    <!-- Highlight 1 (Linked to Pricing[0]) -->
+                    <div
+                        style="background: var(--primary); padding: 1.5rem; border-radius: 8px; flex: 1; text-align: center; border: 1px solid var(--accent); min-width: 200px;">
+                        <small style="color: var(--text-gray);">Featured Service #1</small>
+                        <input id="dash-service-0" type="text" placeholder="Service Name"
+                            style="margin-top: 10px; font-weight: bold; text-align: center; border: 1px dashed var(--accent); width: 100%; padding: 5px; background: rgba(0,0,0,0.2); color: white;">
+                        <input id="dash-price-0" type="text" placeholder="Price"
+                            style="margin-top: 10px; font-size: 1.5rem; font-weight: bold; text-align: center; border: 1px dashed var(--accent); width: 100%; padding: 5px; background: rgba(0,0,0,0.2); color: white;">
+                    </div>
+
+                    <!-- Highlight 2 (Linked to Pricing[1]) -->
+                    <div
+                        style="background: var(--primary); padding: 1.5rem; border-radius: 8px; flex: 1; text-align: center; border: 1px solid var(--accent); min-width: 200px;">
+                        <small style="color: var(--text-gray);">Featured Service #2</small>
+                        <input id="dash-service-1" type="text" placeholder="Service Name"
+                            style="margin-top: 10px; font-weight: bold; text-align: center; border: 1px dashed var(--accent); width: 100%; padding: 5px; background: rgba(0,0,0,0.2); color: white;">
+                        <input id="dash-price-1" type="text" placeholder="Price"
+                            style="margin-top: 10px; font-size: 1.5rem; font-weight: bold; text-align: center; border: 1px dashed var(--accent); width: 100%; padding: 5px; background: rgba(0,0,0,0.2); color: white;">
+                    </div>
+                </div>
+                <div style="text-align: right; margin-top: 1.5rem;">
+                    <button id="save-dashboard-btn" class="btn btn-primary">Update Dashboard Highlights</button>
+                    <p style="font-size: 0.8rem; color: var(--text-gray); margin-top: 5px;">* Updates the first two rows
+                        of your Pricing Table</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- content-section: Core Solutions -->
+        <div id="section-core" class="content-section" style="display: none;">
+            <h3>Edit Core Solutions</h3>
+            <div class="card-panel">
+                <div class="form-group">
+                    <label>Solution 1 Title (Dispatching)</label>
+                    <input type="text" value="Dispatching Services">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea
+                        rows="3">Top-tier load negotiation, route planning, and back-office support to keep your trucks moving and profitable.</textarea>
+                </div>
+                <hr style="border-color: var(--tertiary); margin: 2rem 0;">
+                <div class="form-group">
+                    <label>Solution 2 Title (2290)</label>
+                    <input type="text" value="2290 Annual Filing">
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea
+                        rows="3">Fast, same-day proof for your Heavy Highway Vehicle Use Tax (HVUT). We make it simple and stress-free.</textarea>
+                </div>
+                <button class="btn btn-primary" style="margin-top: 1rem;">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- content-section: Pricing -->
+        <div id="section-pricing" class="content-section" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3>Pricing Table Editor</h3>
+                <button class="btn btn-primary" id="add-service-btn">+ Add New Service</button>
+            </div>
+            <div class="card-panel" style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--tertiary); color: var(--accent);">
+                            <th style="padding: 10px; text-align: left;">Service Name</th>
+                            <th style="padding: 10px; text-align: left;">Price Display</th>
+                            <th style="padding: 10px; text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pricing-table-body">
+                        <!-- Dynamic Rows -->
+                    </tbody>
+                </table>
+                <div style="margin-top: 2rem; text-align: right;">
+                    <button class="btn btn-primary" id="save-pricing-btn">Save All Prices</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- content-section: Theme & Media -->
+        <div id="section-theme" class="content-section" style="display: none;">
+            <h3>Theme & Media</h3>
+            <div class="card-panel">
+                <h4>Color Scheme</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 2rem;">
+                    <div class="form-group">
+                        <label>Primary Color (Background)</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="color" value="#0a192f" style="height: 40px; width: 60px; padding: 0;">
+                            <span style="color: var(--text-gray);">#0a192f</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Secondary Color (Cards)</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="color" value="#112240" style="height: 40px; width: 60px; padding: 0;">
+                            <span style="color: var(--text-gray);">#112240</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Accent Color (Buttons/Text)</label>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <input type="color" value="#64ffda" style="height: 40px; width: 60px; padding: 0;">
+                            <span style="color: var(--text-gray);">#64ffda</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="border-color: var(--tertiary); margin: 2rem 0;">
+
+                <h4>Images</h4>
+                <div class="form-group">
+                    <label>Logo URL (Transparent PNG confirmed)</label>
+                    <input type="text" value="public/logo-transparent.png">
+                    <small style="color: var(--text-gray);">Preview: <img src="public/logo-transparent.png"
+                            style="height: 30px; display: inline-block; vertical-align: middle;"></small>
+                </div>
+                <div class="form-group">
+                    <label>Hero Background Image URL</label>
+                    <input type="text" value="https://images.unsplash.com/photo-1519003722824-194d4455a60c">
+                </div>
+                <button class="btn btn-primary" style="margin-top: 1rem;">Update Theme</button>
+            </div>
+        </div>
+
+
+        <!-- content-section: AI Marketing -->
+        <div id="section-ai" class="content-section" style="display: none;">
+            <h3>AI Marketing Studio</h3>
+            <div class="card-panel">
+                <p>Generate professional marketing images for your website using Google's Nano Banana models.</p>
+                <div style="margin-top: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-gray);">Image Description
+                        (Prompt)</label>
+                    <textarea id="ai-prompt" rows="3"
+                        placeholder="e.g., A futuristic semi-truck driving on a highway at sunset, synthwave style"
+                        style="width: 100%; padding: 1rem; background: var(--primary); border: 1px solid var(--tertiary); color: var(--text-light); border-radius: 4px;"></textarea>
+                </div>
+
+                <div style="margin-top: 1rem; display: flex; gap: 1rem; align-items: center;">
+                    <button id="ai-generate-btn" class="btn btn-primary">Generate Image</button>
+                    <span id="ai-status" style="color: var(--text-gray); font-size: 0.9rem;"></span>
+                </div>
+
+                <div id="ai-result-container" style="margin-top: 2rem; display: none;">
+                    <h4 style="color: var(--accent);">Result:</h4>
+                    <img id="ai-generated-image" src="" alt="Generated Image"
+                        style="max-width: 100%; border-radius: 8px; border: 1px solid var(--tertiary); margin-top: 0.5rem;">
+                    <div style="margin-top: 1rem;">
+                        <button id="ai-download-btn" class="btn"
+                            style="background: var(--tertiary); color: white;">Download</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- content-section: Settings -->
+        <div id="section-settings" class="content-section" style="display: none;">
+            <h3>Site Settings</h3>
+
+            <!-- Contact Info -->
+            <div class="card-panel" style="margin-bottom: 1.5rem;">
+                <h4 style="margin-bottom: 1rem; color: var(--accent);">📞 Contact Information</h4>
+                <div class="form-group">
+                    <label>Business Phone</label>
+                    <input type="text" id="settings-phone" value="470-484-4814">
+                </div>
+                <div class="form-group">
+                    <label>Business Email</label>
+                    <input type="email" id="settings-email" value="jayboyservicesllc@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label>Business Address</label>
+                    <input type="text" id="settings-address" value="" placeholder="Enter business address">
+                </div>
+                <button class="btn btn-primary" onclick="saveContactSettings()">Save Contact Info</button>
+            </div>
+
+            <!-- Social Links -->
+            <div class="card-panel" style="margin-bottom: 1.5rem;">
+                <h4 style="margin-bottom: 1rem; color: var(--accent);">🔗 Social Media Links</h4>
+                <div class="form-group">
+                    <label>Facebook URL</label>
+                    <input type="url" id="settings-facebook" placeholder="https://facebook.com/yourpage">
+                </div>
+                <div class="form-group">
+                    <label>Instagram URL</label>
+                    <input type="url" id="settings-instagram" placeholder="https://instagram.com/yourpage">
+                </div>
+                <div class="form-group">
+                    <label>LinkedIn URL</label>
+                    <input type="url" id="settings-linkedin" placeholder="https://linkedin.com/company/yourpage">
+                </div>
+                <button class="btn btn-primary" onclick="saveSocialSettings()">Save Social Links</button>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="card-panel" style="margin-bottom: 1.5rem;">
+                <h4 style="margin-bottom: 1rem; color: var(--accent);">🔔 Notification Settings</h4>
+                <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="notify-new-user" checked style="width: auto;">
+                    <label for="notify-new-user" style="margin: 0;">Email me when a new user registers</label>
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="notify-service-request" checked style="width: auto;">
+                    <label for="notify-service-request" style="margin: 0;">Email me for new service requests</label>
+                </div>
+                <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                    <input type="checkbox" id="notify-document-upload" style="width: auto;">
+                    <label for="notify-document-upload" style="margin: 0;">Email me when documents are uploaded</label>
+                </div>
+                <button class="btn btn-primary" onclick="saveNotificationSettings()">Save Notification
+                    Preferences</button>
+            </div>
+
+            <!-- Security Settings -->
+            <div class="card-panel">
+                <h4 style="margin-bottom: 1rem; color: var(--accent);">🔒 Security & Access</h4>
+                <div class="form-group">
+                    <label>Admin Email Whitelist (comma-separated)</label>
+                    <input type="text" id="settings-admin-emails" value="theboiblazin2026@gmail.com, admin@nexus.com"
+                        placeholder="email1@example.com, email2@example.com">
+                </div>
+                <p style="color: #888; font-size: 0.85rem; margin-top: 0.5rem;">Only these emails can access the admin
+                    dashboard.</p>
+            </div>
+        </div>
+
+        <!-- content-section: User Management -->
+        <div id="section-users" class="content-section" style="display: none;">
+            <h3>User Access Management</h3>
+
+            <!-- Add New User Form -->
+            <div class="card-panel" style="margin-bottom: 1.5rem;">
+                <h4 style="margin-bottom: 1rem; color: var(--accent);">➕ Add New Driver</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px; align-items: end;">
+                    <div class="form-group" style="margin: 0;">
+                        <label>Email</label>
+                        <input type="email" id="new-user-email" placeholder="driver@example.com">
+                    </div>
+                    <div class="form-group" style="margin: 0;">
+                        <label>Password</label>
+                        <input type="text" id="new-user-password" placeholder="Initial password">
+                    </div>
+                    <div class="form-group" style="margin: 0;">
+                        <label>Membership</label>
+                        <select id="new-user-membership"
+                            style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid var(--tertiary); background: var(--primary); color: white;">
+                            <option value="starter">Starter ($49/mo)</option>
+                            <option value="professional">Professional ($149/mo)</option>
+                            <option value="fleet">Fleet ($349/mo)</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" onclick="addNewUser()" style="height: 42px;">Add User</button>
+                </div>
+                <p id="add-user-status" style="margin-top: 10px; color: #888;"></p>
+            </div>
+
+            <!-- User List -->
+            <div class="card-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <h4 style="color: var(--accent); margin: 0;">👥 Registered Drivers</h4>
+                    <button class="btn btn-primary" onclick="loadUsers()">Refresh List</button>
+                </div>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--tertiary); text-align: left; color: var(--accent);">
+                            <th style="padding: 10px;">Email</th>
+                            <th style="padding: 10px;">Status</th>
+                            <th style="padding: 10px;">Membership</th>
+                            <th style="padding: 10px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { auth, db } from './js/firebase-config.js';
+        import { onAuthStateChanged, signOut, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { doc, getDoc, setDoc, updateDoc, deleteDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { initAI } from './js/ai-marketing.js';
+
+        // Navigation Logic
+        const navItems = document.querySelectorAll('.nav-item:not(.logout-btn)');
+        const sections = document.querySelectorAll('.content-section');
+
+        navItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                navItems.forEach(n => n.classList.remove('active'));
+                sections.forEach(s => s.style.display = 'none');
+                item.classList.add('active');
+
+                // 0=Dashboard, 1=Core, 2=Pricing, 3=Theme, 4=AI, 5=Settings, 6=Users
+                const sectionIds = ['section-dashboard', 'section-core', 'section-pricing', 'section-theme', 'section-ai', 'section-settings', 'section-users'];
+                if (sectionIds[index]) {
+                    document.getElementById(sectionIds[index]).style.display = 'block';
+                    if (sectionIds[index] === 'section-users') {
+                        loadUsers();
+                    }
+                }
+            });
+        });
+
+        // Helper: Add Pricing Row (defined early so it's available in loadDashboardData)
+        window.addPricingRow = function (service = "", price = "") {
+            const tbody = document.getElementById('pricing-table-body');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td style="padding: 10px;"><input type="text" value="${service}" style="width: 100%;"></td>
+                <td style="padding: 10px;"><input type="text" value="${price}" style="width: 100%;"></td>
+                <td style="padding: 10px; text-align: center;">
+                    <button onclick="this.closest('tr').remove()" style="background: none; border: none; cursor: pointer;">🗑️</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        };
+
+        // Admin email whitelist - must match Firestore rules
+        const ADMIN_EMAILS = [
+            'theboiblazin2026@gmail.com',
+            'admin@verify.com',
+            'admin@nexus.com'
+        ];
+
+        function isAdmin(email) {
+            return ADMIN_EMAILS.includes(email.toLowerCase());
+        }
+
+        // --- AUTHENTICATION ---
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // SECURITY: Verify user is an admin
+                if (!isAdmin(user.email)) {
+                    console.error("Access denied: User is not an admin");
+                    alert("Access Denied: You do not have admin privileges.");
+                    signOut(auth).then(() => {
+                        window.location.href = 'login.html';
+                    });
+                    return;
+                }
+
+                document.getElementById('user-email').textContent = user.email;
+                console.log("Admin logged in:", user.email);
+                loadDashboardData(); // Load data when logged in
+                initAI(); // Initialize AI Marketing Studio
+            } else {
+                console.log("No user logged in, redirecting...");
+                window.location.href = 'login.html';
+            }
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            signOut(auth).then(() => {
+                window.location.href = 'login.html';
+            });
+        });
+
+        // --- FIRESTORE LOGIC ---
+
+        async function loadDashboardData() {
+            try {
+                const docRef = doc(db, "content", "main");
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    console.log("Current Data:", data);
+
+                    // 1. Populate Theme
+                    if (data.theme) {
+                        const themeInputs = document.querySelectorAll('#section-theme input');
+                        if (themeInputs.length >= 5) {
+                            if (data.theme.primary) themeInputs[0].value = data.theme.primary;
+                            if (data.theme.secondary) themeInputs[1].value = data.theme.secondary;
+                            if (data.theme.accent) themeInputs[2].value = data.theme.accent;
+                            if (data.theme.logoUrl) themeInputs[3].value = data.theme.logoUrl;
+                            if (data.theme.heroUrl) themeInputs[4].value = data.theme.heroUrl;
+                        }
+                    }
+
+                    // 2. Populate Settings
+                    if (data.settings) {
+                        const settingsInputs = document.querySelectorAll('#section-settings input');
+                        if (data.settings.phone) settingsInputs[0].value = data.settings.phone;
+                        if (data.settings.email) settingsInputs[1].value = data.settings.email;
+                    }
+
+                    // 3. Populate Core Solutions
+                    if (data.solutions) {
+                        const coreInputs = document.querySelectorAll('#section-core input, #section-core textarea');
+                        // Simplification for MVP: Assuming fixed order
+                        if (data.solutions[0]) {
+                            coreInputs[0].value = data.solutions[0].title;
+                            coreInputs[1].value = data.solutions[0].desc;
+                        }
+                        coreInputs[2].value = data.solutions[1].title;
+                        coreInputs[3].value = data.solutions[1].desc;
+                    }
+
+                    // 4. Populate Pricing Table
+                    const pricingBody = document.getElementById('pricing-table-body');
+                    pricingBody.innerHTML = ''; // Clear existing
+                    if (data.pricing && Array.isArray(data.pricing) && data.pricing.length > 0) {
+                        data.pricing.forEach(item => addPricingRow(item.service, item.price));
+                    } else {
+                        // Default content from BUnited Services deep dive
+                        addPricingRow("MC/DOT Authority Setup", "$900.00 + FMCSA Fees");
+                        addPricingRow("2290 Annual HVUT Filing", "Starts at $69.99 + IRS Fees");
+                        addPricingRow("Drug & Alcohol Consortium", "$100.00 / Year");
+                        addPricingRow("Annual UCR Registration", "Starts at $170.00");
+                        addPricingRow("BOC-3 Filing", "$75.00");
+                        addPricingRow("MCS-150 Update", "$150.00");
+                        addPricingRow("IFTA License & IRP Setup", "$399.00");
+                        addPricingRow("Non-CDL Compliance Pkg", "$40.00 / Month");
+                        addPricingRow("Owner-Operator Bundle", "$100.00 / Month");
+                        addPricingRow("Driver Qualification File", "$223.00 / Year");
+                        addPricingRow("Full Back Office Consult", "$1,500.00");
+                    }
+
+                    // 5. Update Dashboard Overview Cards (Highlights)
+                    if (data.pricing && Array.isArray(data.pricing)) {
+                        const pricing = data.pricing;
+                        if (pricing.length > 0) {
+                            document.getElementById('dash-service-0').value = pricing[0].service || '';
+                            document.getElementById('dash-price-0').value = pricing[0].price || '';
+                        }
+                        if (pricing.length > 1) {
+                            document.getElementById('dash-service-1').value = pricing[1].service || '';
+                            document.getElementById('dash-price-1').value = pricing[1].price || '';
+                        }
+                    }
+
+                } else {
+                    console.log("No content document found. Creating one on save.");
+                    // Still show default pricing logic below...
+                }
+            } catch (e) {
+                console.error("Error loading data:", e);
+            }
+        }
+
+        // --- DASHBOARD HIGHLIGHTS SAVE ---
+        const saveDashBtn = document.getElementById('save-dashboard-btn');
+        if (saveDashBtn) {
+            saveDashBtn.addEventListener('click', async () => {
+                const button = saveDashBtn;
+                const originalText = button.textContent;
+                button.textContent = "Updating...";
+
+                try {
+                    // Fetch current data first to get the full array
+                    const docRef = doc(db, "content", "main");
+                    const docSnap = await getDoc(docRef);
+                    let pricing = [];
+
+                    if (docSnap.exists() && docSnap.data().pricing) {
+                        pricing = docSnap.data().pricing;
+                    }
+
+                    // Ensure array has at least 2 slots
+                    while (pricing.length < 2) {
+                        pricing.push({ service: "New Service", price: "$0.00" });
+                    }
+
+                    // Update first two slots
+                    pricing[0].service = document.getElementById('dash-service-0').value;
+                    pricing[0].price = document.getElementById('dash-price-0').value;
+                    pricing[1].service = document.getElementById('dash-service-1').value;
+                    pricing[1].price = document.getElementById('dash-price-1').value;
+
+                    await setDoc(docRef, { pricing }, { merge: true });
+                    alert("Highlights Updated! (Synced with Pricing Table)");
+                    loadDashboardData(); // Refresh UI
+                } catch (e) {
+                    console.error("Error saving highlights:", e);
+                    alert("Error: " + e.message);
+                } finally {
+                    button.textContent = originalText;
+                }
+            });
+        }
+
+
+        // --- SAVE HANDLERS ---
+
+        // Save Core Solutions
+        const saveCoreBtn = document.querySelector('#section-core .btn-primary');
+        if (saveCoreBtn) {
+            saveCoreBtn.addEventListener('click', async () => {
+                const button = saveCoreBtn;
+                const originalText = button.textContent;
+                button.textContent = "Saving...";
+
+                try {
+                    const inputs = document.querySelectorAll('#section-core input, #section-core textarea');
+                    const solutions = [
+                        { title: inputs[0].value, desc: inputs[1].value },
+                        { title: inputs[2].value, desc: inputs[3].value }
+                    ];
+
+                    await setDoc(doc(db, "content", "main"), { solutions }, { merge: true });
+                    alert("Core Solutions Saved!");
+                } catch (e) {
+                    console.error("Error saving:", e);
+                    alert("Error saving: " + e.message);
+                } finally {
+                    button.textContent = originalText;
+                }
+            });
+        }
+
+        // Save Theme
+        const updateThemeBtn = document.querySelector('#section-theme .btn-primary');
+        if (updateThemeBtn) {
+            updateThemeBtn.addEventListener('click', async () => {
+                const button = updateThemeBtn;
+                const originalText = button.textContent;
+                button.textContent = "Updating...";
+                try {
+                    const themeInputs = document.querySelectorAll('#section-theme input');
+                    const theme = {
+                        primary: themeInputs[0].value,
+                        secondary: themeInputs[1].value,
+                        accent: themeInputs[2].value,
+                        logoUrl: themeInputs[3].value,
+                        heroUrl: themeInputs[4].value
+                    };
+
+                    await setDoc(doc(db, "content", "main"), { theme }, { merge: true });
+                    alert("Theme Updated!");
+                } catch (e) {
+                    alert("Error: " + e.message);
+                } finally {
+                    button.textContent = originalText;
+                }
+            });
+        }
+
+        // Save Settings
+        const saveSettingsBtn = document.querySelector('#section-settings .btn-primary');
+        if (saveSettingsBtn) {
+            saveSettingsBtn.addEventListener('click', async () => {
+                const button = saveSettingsBtn;
+                const originalText = button.textContent;
+                button.textContent = "Saving...";
+                try {
+                    const inputs = document.querySelectorAll('#section-settings input');
+                    const settings = {
+                        phone: inputs[0].value,
+                        email: inputs[1].value
+                    };
+
+                    await setDoc(doc(db, "content", "main"), { settings }, { merge: true });
+                    alert("Settings Updated!");
+                } catch (e) {
+                    alert("Error: " + e.message);
+                } finally {
+                    button.textContent = originalText;
+                }
+            });
+        }
+
+        // Save Pricing
+        const savePricingBtn = document.getElementById('save-pricing-btn');
+        if (savePricingBtn) {
+            savePricingBtn.addEventListener('click', async () => {
+                const button = savePricingBtn;
+                const originalText = button.textContent;
+                button.textContent = "Saving...";
+
+                try {
+                    const rows = document.querySelectorAll('#pricing-table-body tr');
+                    const pricing = [];
+                    rows.forEach(row => {
+                        const inputs = row.querySelectorAll('input');
+                        if (inputs.length === 2) {
+                            pricing.push({
+                                service: inputs[0].value,
+                                price: inputs[1].value
+                            });
+                        }
+                    });
+
+                    await setDoc(doc(db, "content", "main"), { pricing }, { merge: true });
+                    alert("Pricing Table Saved!");
+                } catch (e) {
+                    console.error("Error saving pricing:", e);
+                    alert("Error saving: " + e.message);
+                } finally {
+                    button.textContent = originalText;
+                }
+            });
+        }
+
+        // Add New Service Button
+        const addServiceBtn = document.getElementById('add-service-btn');
+        if (addServiceBtn) {
+            addServiceBtn.addEventListener('click', () => {
+                addPricingRow("New Service", "$0.00");
+            });
+        }
+
+        // --- USER MANAGEMENT LOGIC ---
+
+        window.loadUsers = async function () {
+            const tbody = document.getElementById('users-table-body');
+            tbody.innerHTML = '<tr><td colspan="4">Loading...</td></tr>';
+
+            try {
+                const querySnapshot = await getDocs(collection(db, "users"));
+                tbody.innerHTML = '';
+
+                querySnapshot.forEach((doc) => {
+                    const user = doc.data();
+                    const tr = document.createElement('tr');
+                    tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+
+                    // Status Color
+                    let statusColor = '#fff';
+                    if (user.status === 'pending') statusColor = '#ffd166'; // Yellow
+                    if (user.status === 'approved') statusColor = '#06d6a0'; // Green
+                    if (user.status === 'rejected') statusColor = '#ef476f'; // Red
+
+                    tr.innerHTML = `
+                        <td style="padding: 10px;">${user.email}</td>
+                        <td style="padding: 10px; color: ${statusColor}; font-weight: bold;">${user.status.toUpperCase()}</td>
+                        <td style="padding: 10px;">${user.membership || 'standard'}</td>
+                        <td style="padding: 10px;">
+                            ${user.status !== 'approved' ? `<button onclick="updateUserStatus('${doc.id}', 'approved')" style="cursor: pointer; background: #06d6a0; border: none; padding: 5px 10px; border-radius: 4px; margin-right: 5px;">Approve</button>` : ''}
+                            ${user.status !== 'rejected' ? `<button onclick="updateUserStatus('${doc.id}', 'rejected')" style="cursor: pointer; background: #ef476f; border: none; padding: 5px 10px; border-radius: 4px; margin-right: 5px;">Block</button>` : ''}
+                            <button onclick="deleteUser('${doc.id}', '${user.email}')" style="cursor: pointer; background: #333; border: 1px solid #ef476f; color: #ef476f; padding: 5px 10px; border-radius: 4px;">🗑️ Delete</button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+                if (querySnapshot.empty) {
+                    tbody.innerHTML = '<tr><td colspan="4">No registered users found.</td></tr>';
+                }
+
+            } catch (e) {
+                console.error("Error loading users:", e);
+                tbody.innerHTML = `<tr><td colspan="4" style="color: red;">Error: ${e.message}</td></tr>`;
+            }
+        };
+
+        window.updateUserStatus = async function (uid, status) {
+            if (!confirm(`Are you sure you want to set this user to ${status}?`)) return;
+
+            try {
+                await updateDoc(doc(db, "users", uid), { status: status });
+                loadUsers(); // Reload table
+            } catch (e) {
+                alert("Error updating status: " + e.message);
+            }
+        };
+
+        // Delete User Function (removes from Firestore)
+        window.deleteUser = async function (uid, email) {
+            if (!confirm(`⚠️ Are you sure you want to PERMANENTLY DELETE the user:\n\n${email}\n\nThis action cannot be undone!`)) return;
+
+            try {
+                await deleteDoc(doc(db, "users", uid));
+                alert(`User ${email} has been deleted from the system.`);
+                loadUsers(); // Reload table
+            } catch (e) {
+                alert("Error deleting user: " + e.message);
+            }
+        };
+
+        // Add New User Function
+        window.addNewUser = async function () {
+            const email = document.getElementById('new-user-email').value.trim();
+            const password = document.getElementById('new-user-password').value.trim();
+            const membership = document.getElementById('new-user-membership').value;
+            const statusEl = document.getElementById('add-user-status');
+
+            if (!email || !password) {
+                statusEl.style.color = '#ef476f';
+                statusEl.textContent = 'Please fill in email and password.';
+                return;
+            }
+
+            if (password.length < 6) {
+                statusEl.style.color = '#ef476f';
+                statusEl.textContent = 'Password must be at least 6 characters.';
+                return;
+            }
+
+            statusEl.style.color = '#ffd166';
+            statusEl.textContent = 'Creating user...';
+
+            try {
+                // Create the user in Firebase Auth
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const newUser = userCredential.user;
+
+                // Add user profile to Firestore
+                await setDoc(doc(db, "users", newUser.uid), {
+                    email: email,
+                    status: 'approved',
+                    membership: membership,
+                    createdAt: new Date().toISOString(),
+                    createdBy: 'admin'
+                });
+
+                // Clear form
+                document.getElementById('new-user-email').value = '';
+                document.getElementById('new-user-password').value = '';
+                document.getElementById('new-user-membership').value = 'standard';
+
+                statusEl.style.color = '#06d6a0';
+                statusEl.textContent = `✓ User ${email} created successfully!`;
+
+                // Reload users list
+                loadUsers();
+
+            } catch (e) {
+                console.error("Error creating user:", e);
+                statusEl.style.color = '#ef476f';
+                if (e.code === 'auth/email-already-in-use') {
+                    statusEl.textContent = 'Error: This email is already registered.';
+                } else if (e.code === 'auth/invalid-email') {
+                    statusEl.textContent = 'Error: Invalid email format.';
+                } else {
+                    statusEl.textContent = 'Error: ' + e.message;
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

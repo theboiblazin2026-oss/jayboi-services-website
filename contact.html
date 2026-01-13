@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Jayboi Services,LLC</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+            </a>
+            <div class="nav-wrapper">
+                <nav class="nav-pill">
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html" class="active">Contact</a>
+                    <a href="driver-login.html">Client Portal</a>
+                </nav>
+            </div>
+            <a href="services.html" class="btn">Get Started</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero hero-small">
+            <div class="container">
+                <h1 class="text-center">Get In Touch</h1>
+                <p class="text-center" style="margin: 0 auto; color: var(--text-gray);">We are here to help you navigate
+                    the road to compliance.</p>
+            </div>
+        </section>
+
+        <section class="container mb-large">
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xgoeldlb" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                </div>
+                <div class="form-group">
+                    <label for="business">Business Name</label>
+                    <input type="text" id="business" name="business" placeholder="Jayboi Trucking LLC">
+                </div>
+                <div class="form-group">
+                    <label for="dot">MC / DOT #</label>
+                    <input type="text" id="dot" name="dot" placeholder="MC-123456 / USDOT 1234567">
+                </div>
+                <div class="form-group">
+                    <label>Services Needed (Check all that apply)</label>
+                    <div class="checkbox-group"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                        <label style="display: flex; align-items: center; gap: 8px; font-weight: normal;">
+                            <input type="checkbox" name="services[]" value="IFTA"> IFTA Filing
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-weight: normal;">
+                            <input type="checkbox" name="services[]" value="UCR"> UCR Registration
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-weight: normal;">
+                            <input type="checkbox" name="services[]" value="DrugAlcohol"> Drug & Alcohol
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-weight: normal;">
+                            <input type="checkbox" name="services[]" value="DriverFiles"> Driver Files
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-weight: normal;">
+                            <input type="checkbox" name="services[]" value="2290"> 2290 IRS Filing
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 8px; font-weight: normal;">
+                            <input type="checkbox" name="services[]" value="Authority"> Authority Setup
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Additional Details</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell us more about your fleet..."
+                        required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">
+                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+            </div>
+            <div class="contact-item">
+                <span>📞</span> 470-484-4814
+            </div>
+            <div class="contact-item">
+                <span>✉️</span> info@jayboiservicesllc.com
+            </div>
+        </div>
+        <p>&copy; <span id="current-year"></span> Jayboi Services,LLC. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>
