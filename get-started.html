@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started | New Client Onboarding | Jayboi Services</title>
+    <meta name="description"
+        content="Start your journey with Jayboi Services. Fast onboarding for authority setup, 2290 filings, and driver compliance.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jayboiservicesllc.com/get-started.html">
+    <meta property="og:title" content="Get Started | Jayboi Services">
+    <meta property="og:description" content="Fast onboarding for authority setup, 2290 filings, and driver compliance.">
+    <meta property="og:image" content="https://jayboiservicesllc.com/public/logo-transparent.png">
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2NFX78MXW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-N2NFX78MXW');
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+            </a>
+            <div class="nav-wrapper">
+                <nav class="nav-pill">
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="driver-login.html">Client Portal</a>
+                </nav>
+            </div>
+            <!-- "Get Started" button is hidden or self-referential here? Leaving it helping navigation -->
+            <a href="get-started.html" class="btn active">Get Started</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero hero-small">
+            <div class="container">
+                <h1 class="text-center">Start Your Journey</h1>
+                <p class="text-center" style="margin: 0 auto; color: var(--text-gray);">Tell us about your fleet needs
+                    and we'll handle the unexpected.</p>
+            </div>
+        </section>
+
+        <section class="container mb-large">
+            <form class="contact-form" id="onboardingForm" action="https://formspree.io/f/xgoeldlb" method="POST">
+                <input type="hidden" name="_subject" value="New Client Onboarding Request">
+
+                <h3
+                    style="margin-bottom: 1.5rem; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                    1. Company Information</h3>
+
+                <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="business">Company / Business Name *</label>
+                        <input type="text" id="business" name="business" placeholder="Jayboi Logistics LLC" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-name">Contact Person *</label>
+                        <input type="text" id="contact-name" name="name" placeholder="John Doe" required>
+                    </div>
+                </div>
+
+                <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dot">MC / DOT Number (if applicable)</label>
+                    <input type="text" id="dot" name="dot" placeholder="MC-123456 / USDOT 1234567">
+                </div>
+
+                <h3
+                    style="margin: 2rem 0 1rem; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                    2. Services Needed</h3>
+
+                <div class="form-group">
+                    <label>Select all that apply:</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services[]" value="AuthoritySetup">
+                            <span><strong>Authority Setup</strong> (MC/DOT, BOC-3)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services[]" value="2290">
+                            <span><strong>2290 Filing</strong> (HVUT Tax)</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services[]" value="IFTA">
+                            <span><strong>IFTA / IRP</strong> Setup & Filing</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services[]" value="DrugAlcohol">
+                            <span><strong>Drug & Alcohol</strong> Consortium</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services[]" value="DriverFiles">
+                            <span><strong>Driver Qualification</strong> Files</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services[]" value="UCR">
+                            <span><strong>UCR</strong> Registration</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services[]" value="Dispatching">
+                            <span><strong>Dispatching</strong> Services</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="services[]" value="Factoring">
+                            <span><strong>Factoring</strong> Setup</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Additional Notes / Specific Questions</label>
+                    <textarea id="message" name="message" rows="4"
+                        placeholder="How many trucks do you have? Any specific deadlines?"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Submit
+                    Request</button>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-gray);">We usually
+                    respond within 24 hours.</p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="logo">
+                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+            </div>
+            <div class="contact-item">
+                <span>📞</span> 470-484-4814
+            </div>
+            <div class="contact-item">
+                <span>✉️</span> info@jayboiservicesllc.com
+            </div>
+        </div>
+        <p>&copy; <span id="current-year"></span> Jayboi Services,LLC. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

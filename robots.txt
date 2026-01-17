@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Sitemap: https://jayboiservicesllc.com/sitemap.xml
+
+User-agent: *
+Disallow: /admin.html
+Disallow: /driver-portal.html
+Disallow: /success.html
+Disallow: /404.html
+Disallow: /compliance-checklist.html

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Compliance Checklist | Jayboi Services</title>
+    <meta name="robots" content="noindex"> <!-- Don't index this page, it's for subscribers -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2NFX78MXW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-N2NFX78MXW');
+    </script>
+    <style>
+        .checklist-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .checklist-item input {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            header,
+            footer,
+            .btn-print-hide {
+                display: none;
+            }
+
+            .checklist-item {
+                border: 1px solid #ccc;
+                color: black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+            </a>
+            <a href="get-started.html" class="btn">Get Help With This List</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="container mt-large mb-large">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h1 class="text-accent">2026 Trucking Compliance Checklist</h1>
+                <p>Print this out and keep it in your office or cab to stay audit-ready.</p>
+                <button onclick="window.print()" class="btn btn-primary btn-print-hide" style="margin-top: 1rem;">🖨️
+                    Print Checklist</button>
+            </div>
+
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem;">
+
+                <!-- Section 1 -->
+                <div class="card" style="border-top: 4px solid var(--accent);">
+                    <h3>🚛 Quarterly & Annual Tax</h3>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <div>
+                            <strong>IFTA Fuel Tax</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-gray);">Filed quarterly (Apr 30, Jul 31, Oct
+                                31, Jan 31).</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <div>
+                            <strong>IRS Form 2290 (HVUT)</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-gray);">Due annually by August 31st.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <div>
+                            <strong>UCR Registration</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-gray);">Renew annually (opens Oct 1st).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="card" style="border-top: 4px solid var(--accent);">
+                    <h3>📁 Driver Qualification File (DQF)</h3>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Valid CDL (Class A)</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Medical Examiner's Certificate</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Annual MVR Review</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Employment Application (Long form)</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Road Test Certificate</span>
+                    </div>
+                </div>
+
+                <!-- Section 3 -->
+                <div class="card" style="border-top: 4px solid var(--accent);">
+                    <h3>🧪 Drug & Alcohol</h3>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <div>
+                            <strong>Consortium Enrollment</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-gray);">Must be active in a random testing
+                                pool.</p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <div>
+                            <strong>Clarifying House Query</strong>
+                            <p style="font-size: 0.85rem; color: var(--text-gray);">Run annual query for all drivers.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Pre-Employment Test Result</span>
+                    </div>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="card" style="border-top: 4px solid var(--accent);">
+                    <h3>🚔 Vehicle Maintenance</h3>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Annual DOT Inspection (Truck)</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Annual DOT Inspection (Trailer)</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Daily DVIR Logbook (Last 7 days)</span>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox">
+                        <span>Maintenance Records (Last 12 mos)</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-large btn-print-hide">
+                <h3 style="margin-bottom: 1rem;">Need Help checking these off?</h3>
+                <p style="margin-bottom: 1.5rem;">Jayboi Services can handle your IFTA, 2290, and DQF for you.</p>
+                <a href="get-started.html" class="btn btn-primary">Start Compliance Review</a>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="btn-print-hide">
+        <div class="container footer-content">
+            <p>&copy; <span id="current-year"></span> Jayboi Services,LLC. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

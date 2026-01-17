@@ -634,9 +634,370 @@ textarea:focus {
         min-width: unset !important;
         max-width: unset !important;
     }
+}
 
-    .admin-main {
-        width: 100% !important;
-        padding: 20px !important;
+
+/* Checkbox Group Layout Fix */
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.checkbox-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent);
+}
+
+.checkbox-item input {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.checkbox-item span {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--text-light);
+    /* Ensure visibility */
+}
+
+/* Ensure mobile stacking */
+@media (max-width: 480px) {
+    .checkbox-group {
+        grid-template-columns: 1fr;
     }
+}
+
+/* ================================================
+   PORTAL UTILITY CLASSES (Driver Portal & Admin)
+   These replace inline styles for better maintainability
+   ================================================ */
+
+/* Layout */
+.portal-flex {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.portal-flex-wrap {
+    flex-wrap: wrap;
+}
+
+.portal-flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.portal-full-width {
+    width: 100%;
+}
+
+/* Card/Panel Styles */
+.portal-card {
+    background: var(--secondary);
+    padding: 2rem;
+    border-radius: var(--radius);
+    margin-bottom: 2rem;
+}
+
+.portal-card-dark {
+    background: var(--primary);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--tertiary);
+}
+
+/* Form Elements */
+.portal-input,
+.portal-select,
+.portal-textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--primary);
+    border: 1px solid var(--tertiary);
+    color: var(--text-light);
+    border-radius: 4px;
+}
+
+.portal-input:focus,
+.portal-select:focus,
+.portal-textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.portal-label {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+/* Table Styles */
+.portal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.portal-table th,
+.portal-table td {
+    padding: 1rem;
+    text-align: left;
+}
+
+.portal-table thead tr {
+    border-bottom: 1px solid var(--tertiary);
+}
+
+.portal-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Status Colors */
+.status-success {
+    color: #06d6a0;
+}
+
+.status-warning {
+    color: #ffd166;
+}
+
+.status-error {
+    color: #ff6b6b;
+}
+
+.status-info {
+    color: var(--accent);
+}
+
+/* Button Variants */
+.btn-danger {
+    background: transparent;
+    border: 1px solid #ef476f;
+    color: #ef476f;
+}
+
+.btn-danger:hover {
+    background: rgba(239, 71, 111, 0.1);
+}
+
+.btn-success {
+    background: #06d6a0;
+    border: none;
+    color: var(--primary);
+}
+
+.btn-warning {
+    background: #ffd166;
+    border: none;
+    color: var(--primary);
+}
+
+/* Progress Bar */
+.portal-progress {
+    background: var(--tertiary);
+    border-radius: 4px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.portal-progress-bar {
+    background: var(--accent);
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s;
+}
+
+/* Chat Widget */
+.chat-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+.chat-window {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 350px;
+    height: 500px;
+    background: var(--secondary);
+    border: 1px solid var(--tertiary);
+    border-radius: 12px;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 999;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.chat-window.open {
+    display: flex;
+}
+
+.chat-header {
+    background: var(--tertiary);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chat-message {
+    background: var(--primary);
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 80%;
+    border: 1px solid var(--tertiary);
+}
+
+.chat-message.bot {
+    align-self: flex-start;
+}
+
+.chat-message.user {
+    align-self: flex-end;
+    background: var(--accent);
+    color: var(--primary);
+}
+
+.chat-input-area {
+    padding: 10px;
+    border-top: 1px solid var(--tertiary);
+    display: flex;
+}
+
+/* Notification Badge */
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff6b6b;
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* File Notes */
+.file-note {
+    color: #ffd166;
+    font-style: italic;
+    font-size: 0.85rem;
+}
+
+/* Access Message Overlay */
+.access-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--primary);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.access-overlay.show {
+    display: flex;
+}
+
+/* Dashboard Stats Grid */
+.stats-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.stat-card {
+    background: var(--primary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--tertiary);
+}
+
+.stat-card h4 {
+    margin: 0;
+    color: var(--accent);
+}
+
+.stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Header Actions */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.membership-badge {
+    background: var(--tertiary);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+/* Mark All Read Button */
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--accent);
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Hidden by default utility */
+.hidden {
+    display: none !important;
 }

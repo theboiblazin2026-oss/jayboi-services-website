@@ -1,0 +1,23 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Helper: Check if user is Owner/Admin
+    function isAdmin() {
+      return request.auth != null && (
+        request.auth.token.email == "theboiblazin2026@gmail.com" ||
+        request.auth.token.email == "admin@verify.com" ||
+        request.auth.token.email == "admin@nexus.com" ||
+        request.auth.token.email == "admin@test.com"
+      );
+    }
+    
+    // User Files - each user can only access their own folder
+    // BUT admins can also read/write to support clients
+    match /users/{userId}/{allPaths=**} {
+      allow read, write: if request.auth != null && (
+        request.auth.uid == userId || isAdmin()
+      );
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import { db } from './js/firebase-config.js';
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { doc, getDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Current Year Update
@@ -16,6 +16,76 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     const hiddenElements = document.querySelectorAll('.card, .hero-content');
     hiddenElements.forEach((el) => observer.observe(el));
+
+    // --- ONBOARDING FORM HANDLER ---
+    const onboardingForm = document.getElementById('onboardingForm');
+    if (onboardingForm) {
+        onboardingForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const submitButton = onboardingForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.textContent = 'Processing...';
+            submitButton.disabled = true;
+
+            const formData = new FormData(onboardingForm);
+            const data = Object.fromEntries(formData.entries());
+
+            // Fix services[] array
+            const services = formData.getAll('services[]');
+            if (services.length > 0) {
+                data['services'] = services;
+                delete data['services[]'];
+            }
+
+            let firestoreSuccess = false;
+            let formspreeSuccess = false;
+            let errors = [];
+
+            // 1. Try Firestore
+            try {
+                await addDoc(collection(db, "requests"), {
+                    ...data,
+                    timestamp: new Date().toISOString(),
+                    status: 'pending'
+                });
+                firestoreSuccess = true;
+                console.log("Firestore save success");
+            } catch (err) {
+                console.error("Firestore Error:", err);
+                errors.push("Database: " + err.message);
+            }
+
+            // 2. Try Formspree (Backup)
+            try {
+                const response = await fetch(onboardingForm.action, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    formspreeSuccess = true;
+                } else {
+                    const errData = await response.json();
+                    console.error("Formspree Error:", errData);
+                    // Don't fail the whole process if just email fails, provided DB worked
+                }
+            } catch (err) {
+                console.error("Formspree Network Error:", err);
+                // Don't fail if just email fails
+            }
+
+            // 3. Determine Outcome
+            if (firestoreSuccess || formspreeSuccess) {
+                alert("Request received! We have securely saved your information and will contact you shortly.");
+                window.location.href = 'index.html';
+            } else {
+                console.error("All submissions failed:", errors);
+                alert("There was an issue submitting your request. Please call us directly at 470-484-4814.\nDetails: " + errors.join(", "));
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+            }
+        });
+    }
 
     // --- CONTACT FORM AJAX HANDLING ---
     const contactForm = document.getElementById('contactForm');
