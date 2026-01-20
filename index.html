@@ -16,7 +16,7 @@
     <meta property="og:title" content="Jayboi Services, LLC | Trusted Trucking Compliance">
     <meta property="og:description"
         content="Expert trucking compliance services: 2290 filing, IFTA setup, and professional dispatching.">
-    <meta property="og:image" content="https://jayboiservicesllc.com/public/logo-transparent.png">
+    <meta property="og:image" content="https://jayboiservicesllc.com/logo-transparent.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -26,6 +26,7 @@
         content="Expert trucking compliance services: 2290 filing, IFTA setup, and professional dispatching.">
     <meta property="twitter:image" content="https://jayboiservicesllc.com/public/logo-transparent.png">
 
+    <link rel="canonical" href="https://jayboiservicesllc.com/">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
@@ -63,15 +64,59 @@
 
 <body>
 
+    <!-- FREE CHECKLIST ANNOUNCEMENT BANNER -->
+    <div id="promo-banner" class="promo-banner">
+        <a href="free-checklist.html">
+            🚛 <strong>FREE:</strong> Download the 2026 Trucking Compliance Checklist — Avoid DOT Fines!
+            <span>Get It Now →</span>
+        </a>
+        <button id="close-banner" class="promo-close">&times;</button>
+    </div>
+
+    <script>
+        // Adjust header position for banner (Desktop Only)
+        (function () {
+            function adjustHeader() {
+                const banner = document.getElementById('promo-banner');
+                const header = document.querySelector('header');
+                const closeBtn = document.getElementById('close-banner');
+
+                if (banner && header) {
+                    // On mobile (<= 768px), banner is relative (CSS), so no manual JS offset needed.
+                    if (window.innerWidth <= 768) {
+                        header.style.top = '0';
+                        return;
+                    }
+
+                    const height = banner.offsetHeight;
+                    header.style.top = height + 'px';
+
+                    closeBtn.onclick = function () {
+                        banner.style.display = 'none';
+                        header.style.top = '0';
+                    };
+                }
+            }
+
+            // Run on load and resize
+            window.addEventListener('load', adjustHeader);
+            window.addEventListener('resize', adjustHeader);
+        })();
+    </script>
+
+
     <header>
         <div class="container">
             <a href="index.html" class="logo">
-                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+                <img src="./logo-transparent.webp" alt="Jayboi Services, LLC - Trucking Compliance & Dispatching Logo"
+                    class="logo-img">
             </a>
             <div class="nav-wrapper">
                 <nav class="nav-pill">
                     <a href="index.html" class="active">Home</a>
                     <a href="services.html">Services</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="free-checklist.html" class="text-accent">Free Checklist</a>
                     <a href="contact.html">Contact</a>
                     <a href="driver-login.html">Client Portal</a>
                 </nav>
@@ -89,14 +134,13 @@
     <main>
         <section class="hero">
             <div class="container hero-content">
-                <span class="tagline">YOUR TRUSTED DISPATCHING & COMPLIANCE PARTNER</span>
+                <span class="tagline text-accent">TRUCKING COMPLIANCE SIMPLIFIED</span>
                 <h1>Professional Dispatching & Trucking Compliance</h1>
                 <p>Maximize your earnings with our expert dispatch services while we handle the red tape. From load
                     negotiation to driver files and 2290 filings, Jayboi Services,LLC keeps your wheels turning.</p>
-                <div class="hero-buttons">
-                    <a href="services.html" class="btn btn-primary">View Pricing</a>
-                    <a href="contact.html" class="btn">Contact Us</a>
-                    <a href="driver-login.html" class="btn">Client Login</a>
+                <div>
+                    <a href="#services" class="btn btn-primary">Our Services</a>
+                    <a href="contact.html" class="btn btn-outline">Free Consultation</a>
                 </div>
             </div>
         </section>
@@ -105,35 +149,62 @@
             <div class="container">
                 <h2 class="text-center">Our Core Solutions</h2>
                 <div class="grid">
-                    <div class="card"
-                        style="border: 2px solid var(--accent); background: linear-gradient(135deg, var(--secondary) 0%, var(--tertiary) 100%);">
+                    <div class="card service-link-card" onclick="location.href='dispatching.html'"
+                        style="cursor: pointer; border: 2px solid var(--accent); background: linear-gradient(135deg, var(--secondary) 0%, var(--tertiary) 100%);">
                         <div class="card-icon">🚛</div>
                         <h3>Dispatching Services</h3>
                         <p>Top-tier load negotiation, route planning, and back-office support to keep your trucks moving
                             and profitable.</p>
+                        <span class="text-accent font-bold mt-md" style="font-size: 0.9rem; display: block;">Learn
+                            More &rarr;</span>
                     </div>
-                    <div class="card">
+                    <div class="card service-link-card" onclick="location.href='2290-filing.html'"
+                        style="cursor: pointer;">
                         <div class="card-icon">📄</div>
                         <h3>2290 Annual Filing</h3>
                         <p>Fast, same-day proof for your Heavy Highway Vehicle Use Tax (HVUT). We make it simple and
                             stress-free.</p>
+                        <span class="text-accent font-bold mt-md" style="font-size: 0.9rem; display: block;">Start
+                            Filing &rarr;</span>
                     </div>
-                    <div class="card">
+                    <div class="card service-link-card" onclick="location.href='driver-files.html'"
+                        style="cursor: pointer;">
                         <div class="card-icon">📁</div>
                         <h3>Driver File Management</h3>
                         <p>Complete management of driver qualification files to ensure you stay audit-ready at all
                             times.</p>
+                        <span class="text-accent font-bold mt-md" style="font-size: 0.9rem; display: block;">Get
+                            Compliant &rarr;</span>
                     </div>
-                    <div class="card">
+                    <div class="card service-link-card" onclick="location.href='fmcsa-clearinghouse.html'"
+                        style="cursor: pointer;">
                         <div class="card-icon">🧪</div>
                         <h3>Drug & Alcohol Programs</h3>
                         <p>FMCSA compliant consortium enrollment and management for all your drivers.</p>
+                        <span class="text-accent font-bold mt-md" style="font-size: 0.9rem; display: block;">View
+                            Services &rarr;</span>
                     </div>
-                    <div class="card">
+                    <div class="card service-link-card" onclick="location.href='authority-setup.html'"
+                        style="cursor: pointer;">
                         <div class="card-icon">🚛</div>
                         <h3>Authority Setup</h3>
                         <p>Full MC/DOT authority setup, dissolution, and updates to keep your business legal.</p>
+                        <span class="text-accent font-bold mt-md" style="font-size: 0.9rem; display: block;">Start
+                            Company &rarr;</span>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SPEED GUARANTEE BANNER -->
+        <section class="speed-guarantee-section bg-gradient-guarantee" style="padding: 20px 0;">
+            <div class="container" style="text-align: center;">
+                <div class="speed-badge speed-badge-container">
+                    <span style="font-size: 1.5rem;">⚡</span>
+                    <span class="text-accent font-bold" style="text-transform: uppercase; letter-spacing: 1px;">Speed
+                        Guarantee</span>
+                    <span style="color: white; font-size: 1.1rem;">2290 Schedule 1 in 2 Hours or It's <strong
+                            class="text-accent">50% OFF!</strong></span>
                 </div>
             </div>
         </section>
@@ -145,75 +216,124 @@
                 <p class="text-center" style="color: var(--text-gray); margin-bottom: 2rem;">Choose the plan that fits
                     your operation. All plans include portal access.</p>
 
-                <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                <div class="grid grid-3-col">
 
                     <!-- STARTER PACKAGE -->
-                    <div class="card" style="border: 2px solid var(--tertiary); position: relative;">
-                        <div style="text-align: center; padding: 1rem 0;">
-                            <span
-                                style="background: var(--tertiary); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase;">Starter</span>
-                            <h3 style="font-size: 2.5rem; margin: 1rem 0 0.25rem;">$49<span
-                                    style="font-size: 1rem; color: var(--text-gray);">/mo</span></h3>
-                            <p style="color: var(--text-gray); font-size: 0.9rem;">Perfect for owner-operators</p>
+                    <div class="card pricing-card-wrapper">
+                        <div class="pricing-header">
+                            <span class="pricing-badge pricing-badge-starter">Starter</span>
+                            <h3 class="pricing-price">$100<span>/mo</span></h3>
+                            <p class="pricing-sub">Perfect for owner-operators</p>
                         </div>
-                        <hr style="border: none; border-top: 1px solid var(--tertiary); margin: 1rem 0;">
-                        <ul style="color: var(--text-light); list-style: none; padding: 0; margin: 0;">
-                            <li style="padding: 0.5rem 0;">✅ Driver Portal Access</li>
-                            <li style="padding: 0.5rem 0;">✅ Document Storage (5GB)</li>
-                            <li style="padding: 0.5rem 0;">✅ Basic AI Chat Support</li>
-                            <li style="padding: 0.5rem 0;">✅ Compliance Reminders</li>
+                        <p class="text-light-blue mb-md">
+                            Professional dispatching, compliance management, and authority setup for owner-operators and
+                            fleet
+                            owners. We handle the paperwork so you can handle the road.
+                        </p>
+                        <hr class="pricing-divider">
+                        <ul class="pricing-list">
+                            <li>✅ Driver Portal Access</li>
+                            <li>✅ Document Storage (5GB)</li>
+                            <li>✅ 24/7 JayBot AI Support</li>
+                            <li>✅ Compliance Reminders</li>
+                            <li>✅ Deadline Alerts</li>
                         </ul>
-                        <a href="https://buy.stripe.com/cNidR2f4KdSR8fQbhb0oM03" class="btn"
-                            style="width: 100%; text-align: center; margin-top: 1.5rem;" target="_blank"
-                            rel="noopener noreferrer">Subscribe - $49/mo</a>
+                        <a href="https://buy.stripe.com/28E3co6ye4ih1Rsad70oM0e" class="btn pricing-btn" target="_blank"
+                            rel="noopener noreferrer">Subscribe - $100/mo</a>
                     </div>
 
                     <!-- PROFESSIONAL PACKAGE (MOST POPULAR) -->
-                    <div class="card"
-                        style="border: 2px solid var(--accent); position: relative; transform: scale(1.05);">
-                        <div
-                            style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--primary); padding: 4px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase;">
-                            Most Popular</div>
-                        <div style="text-align: center; padding: 1rem 0;">
-                            <span
-                                style="background: var(--accent); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: bold;">Professional</span>
-                            <h3 style="font-size: 2.5rem; margin: 1rem 0 0.25rem; color: var(--accent);">$149<span
-                                    style="font-size: 1rem; color: var(--text-gray);">/mo</span></h3>
-                            <p style="color: var(--text-gray); font-size: 0.9rem;">Full-service for serious drivers</p>
+                    <div class="card pricing-card-wrapper pricing-card-featured">
+                        <div class="pricing-popular-tag">Most Popular</div>
+                        <div class="pricing-header">
+                            <span class="pricing-badge pricing-badge-pro">Professional</span>
+                            <h3 class="pricing-price text-accent">$150<span>/mo</span></h3>
+                            <p class="pricing-sub">One Monthly Fee, Zero Stress</p>
                         </div>
-                        <hr style="border: none; border-top: 1px solid var(--accent); margin: 1rem 0;">
-                        <ul style="color: var(--text-light); list-style: none; padding: 0; margin: 0;">
-                            <li style="padding: 0.5rem 0;">✅ Everything in Starter</li>
-                            <li style="padding: 0.5rem 0;">✅ <strong>IFTA Filing Assistance</strong></li>
-                            <li style="padding: 0.5rem 0;">✅ <strong>2290 Filing Included</strong></li>
-                            <li style="padding: 0.5rem 0;">✅ Priority Email Support</li>
+                        <hr class="pricing-divider accent">
+                        <ul class="pricing-list">
+                            <li>✅ Everything in Starter</li>
+                            <li>✅ <strong>IFTA Filing INCLUDED</strong></li>
+                            <li>✅ <strong>2290 Filing INCLUDED</strong></li>
+                            <li>✅ <strong>UCR Renewal INCLUDED</strong></li>
+                            <li>✅ Priority Phone Support</li>
                         </ul>
-                        <a href="https://buy.stripe.com/6oUcMYf4KbKJ7bMclf0oM02" class="btn btn-primary"
-                            style="width: 100%; text-align: center; margin-top: 1.5rem;" target="_blank"
-                            rel="noopener noreferrer">Subscribe - $149/mo</a>
+                        <a href="https://buy.stripe.com/dRm5kw4q69CB2Vwetn0oM0f" class="btn btn-primary pricing-btn"
+                            target="_blank" rel="noopener noreferrer">Subscribe - $150/mo</a>
                     </div>
 
                     <!-- FLEET PACKAGE -->
-                    <div class="card" style="border: 2px solid var(--tertiary); position: relative;">
-                        <div style="text-align: center; padding: 1rem 0;">
-                            <span
-                                style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase;">Fleet</span>
-                            <h3 style="font-size: 2.5rem; margin: 1rem 0 0.25rem;">$349<span
-                                    style="font-size: 1rem; color: var(--text-gray);">/mo</span></h3>
-                            <p style="color: var(--text-gray); font-size: 0.9rem;">For fleets & companies</p>
+                    <div class="card pricing-card-wrapper">
+                        <div class="pricing-header">
+                            <span class="pricing-badge pricing-badge-fleet">Fleet</span>
+                            <h3 class="pricing-price">$350<span>/mo</span></h3>
+                            <p class="pricing-sub">For growing companies</p>
                         </div>
-                        <hr style="border: none; border-top: 1px solid var(--tertiary); margin: 1rem 0;">
-                        <ul style="color: var(--text-light); list-style: none; padding: 0; margin: 0;">
-                            <li style="padding: 0.5rem 0;">✅ Everything in Professional</li>
-                            <li style="padding: 0.5rem 0;">✅ <strong>Up to 10 Driver Accounts</strong></li>
-                            <li style="padding: 0.5rem 0;">✅ <strong>Dedicated Account Manager</strong></li>
-                            <li style="padding: 0.5rem 0;">✅ Phone Support (Priority)</li>
+                        <hr class="pricing-divider">
+                        <ul class="pricing-list">
+                            <li>✅ Everything in Professional</li>
+                            <li>✅ <strong>Up to 10 Driver Accounts</strong></li>
+                            <li>✅ <strong>Dedicated Account Manager</strong></li>
+                            <li>✅ Audit Preparation Support</li>
+                            <li>✅ Custom Reporting</li>
                         </ul>
-                        <a href="https://buy.stripe.com/aFaaEQf4K021bs2etn0oM01" class="btn"
-                            style="width: 100%; text-align: center; margin-top: 1.5rem;" target="_blank"
-                            rel="noopener noreferrer">Subscribe - $349/mo</a>
+                        <a href="https://buy.stripe.com/fZu00c2hY3ed0Nodpj0M0g" class="btn pricing-btn" target="_blank"
+                            rel="noopener noreferrer">Subscribe - $350/mo</a>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <!-- NEW AUTHORITY STARTUP PACKAGE -->
+        <section class="startup-package-section startup-section-bg" style="padding: 80px 0;">
+            <div class="container" style="text-align: center;">
+                <span
+                    style="color: var(--accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Starting
+                    Your Trucking Business?</span>
+                <h2 style="margin: 1rem 0 0.5rem 0;">New Authority Startup Package</h2>
+                <p style="color: var(--text-gray); margin-bottom: 2rem;">Everything you need to get on the road legally
+                    - in one package</p>
+
+                <div class="startup-card startup-card-container">
+                    <div class="startup-badge">
+                        SAVE $500+</div>
+
+                    <div style="font-size: 3.5rem; font-weight: bold; color: var(--accent); margin-bottom: 1rem;">$1,099
+                    </div>
+                    <p style="color: var(--text-gray); margin-bottom: 1.5rem;">One-time setup fee</p>
+
+                    <ul style="list-style: none; padding: 0; text-align: left; margin-bottom: 2rem;">
+                        <li
+                            style="padding: 10px 0; border-bottom: 1px solid var(--tertiary); display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--accent);">✓</span> MC Authority Setup
+                        </li>
+                        <li
+                            style="padding: 10px 0; border-bottom: 1px solid var(--tertiary); display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--accent);">✓</span> DOT Number Registration
+                        </li>
+                        <li
+                            style="padding: 10px 0; border-bottom: 1px solid var(--tertiary); display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--accent);">✓</span> BOC-3 Process Agent Filing
+                        </li>
+                        <li
+                            style="padding: 10px 0; border-bottom: 1px solid var(--tertiary); display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--accent);">✓</span> UCR Registration
+                        </li>
+                        <li
+                            style="padding: 10px 0; border-bottom: 1px solid var(--tertiary); display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--accent);">✓</span> IFTA Account Setup
+                        </li>
+                        <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                            <span style="color: var(--accent);">✓</span> First 2290 Filing INCLUDED
+                        </li>
+                    </ul>
+
+                    <a href="https://buy.stripe.com/00w00c6ye5ml7bMdpj0M0h" class="btn btn-primary w-full"
+                        target="_blank" rel="noopener noreferrer" style="padding: 15px; font-size: 1.1rem;">Get Your
+                        Authority Started →</a>
+                    <p style="color: var(--text-gray); font-size: 0.8rem; margin-top: 1rem;">⚡ Most setups completed
+                        within 4-6 weeks</p>
                 </div>
             </div>
         </section>
@@ -228,16 +348,16 @@
                         <h3>FMCSA Clearinghouse Update</h3>
                         <p>New regulations for CDL downgrades affecting drivers with violations. Stay compliant to avoid
                             shut-downs.</p>
-                        <a href="https://clearinghouse.fmcsa.dot.gov/" target="_blank" rel="noopener noreferrer"
-                            class="text-accent" style="display: block; margin-top: 1rem; font-size: 0.9rem;">Visit FMCSA
-                            Clearinghouse &rarr;</a>
+                        <a href="fmcsa-clearinghouse.html" class="text-accent"
+                            style="display: block; margin-top: 1rem; font-size: 0.9rem;">Get Clearinghouse Help
+                            &rarr;</a>
                     </div>
                     <div class="card" style="background: var(--primary);">
                         <div class="card-icon">📅</div>
                         <h3>2290 Deadline: August 31st</h3>
                         <p>Don't wait until the last minute! File your Heavy Highway Vehicle Use Tax early to avoid
                             penalties.</p>
-                        <a href="services.html" class="text-accent"
+                        <a href="2290-filing.html" class="text-accent"
                             style="display: block; margin-top: 1rem; font-size: 0.9rem;">File Your 2290 Now &rarr;</a>
                     </div>
                     <div class="card" style="background: var(--primary);">
@@ -250,11 +370,38 @@
                 </div>
             </div>
         </section>
+        <!-- Trust Badges Section -->
+        <section class="trust-section" style="padding: 60px 0; background: var(--primary);">
+            <div class="container">
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <div class="trust-stat-num">15+</div>
+                        <div class="trust-stat-label">Years Experience</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-stat-num">500+</div>
+                        <div class="trust-stat-label">Clients Served</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-stat-num">⭐ 4.9</div>
+                        <div class="trust-stat-label">Average Rating</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="trust-stat-num">24/7</div>
+                        <div class="trust-stat-label">Support Available</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="testimonials-section">
             <div class="container">
                 <h2 class="text-center">What Our Clients Say</h2>
+                <p class="text-center" style="color: var(--text-gray); margin-bottom: 3rem;">Trusted by owner-operators
+                    and fleets across the nation</p>
                 <div class="grid">
                     <div class="testimonial-card">
+                        <div style="color: #ffc107; margin-bottom: 10px;">⭐⭐⭐⭐⭐</div>
                         <div class="testimonial-quote">
                             "Jayboi Services transformed our operations. We used to struggle with 2290 filings and
                             missing deadlines, but now everything is handled professionally and on time."
@@ -263,11 +410,12 @@
                             <div class="author-avatar">🚛</div>
                             <div class="author-info">
                                 <h4>Michael R.</h4>
-                                <p>Owner Operator</p>
+                                <p>Owner Operator, Atlanta GA</p>
                             </div>
                         </div>
                     </div>
                     <div class="testimonial-card">
+                        <div style="color: #ffc107; margin-bottom: 10px;">⭐⭐⭐⭐⭐</div>
                         <div class="testimonial-quote">
                             "The dispatching team is phenomenal. They find the best paying loads and keep my wheels
                             turning. I've seen a 30% increase in profit since switching."
@@ -276,11 +424,12 @@
                             <div class="author-avatar">🚍</div>
                             <div class="author-info">
                                 <h4>Sarah J.</h4>
-                                <p>Fleet Manager</p>
+                                <p>Fleet Manager, Dallas TX</p>
                             </div>
                         </div>
                     </div>
                     <div class="testimonial-card">
+                        <div style="color: #ffc107; margin-bottom: 10px;">⭐⭐⭐⭐⭐</div>
                         <div class="testimonial-quote">
                             "Compliance audits used to give me nightmares. Jayboi's driver file management kept us
                             audit-ready and stress-free. Highly recommended!"
@@ -294,9 +443,75 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Additional Testimonials Row -->
+                <div class="grid" style="margin-top: 2rem;">
+                    <div class="testimonial-card">
+                        <div style="color: #ffc107; margin-bottom: 10px;">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-quote">
+                            "IFTA used to take me hours every quarter. Now Jayboi handles it all - I just send my fuel
+                            receipts and they take care of the rest!"
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">⛽</div>
+                            <div class="author-info">
+                                <h4>James T.</h4>
+                                <p>Owner Operator, Houston TX</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div style="color: #ffc107; margin-bottom: 10px;">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-quote">
+                            "Got my authority set up faster than I expected. Calvin walked me through everything step by
+                            step. True professionals!"
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">📝</div>
+                            <div class="author-info">
+                                <h4>Marcus W.</h4>
+                                <p>New Carrier, Miami FL</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div style="color: #ffc107; margin-bottom: 10px;">⭐⭐⭐⭐⭐</div>
+                        <div class="testimonial-quote">
+                            "Best decision I made for my trucking business. The free compliance checklist alone saved me
+                            from a DOT fine!"
+                        </div>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">✅</div>
+                            <div class="author-info">
+                                <h4>Patricia K.</h4>
+                                <p>Small Fleet Owner, Chicago IL</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
+
+        <!-- REFERRAL PROGRAM SECTION -->
+        <section class="referral-section" style="padding: 60px 0; background: var(--tertiary);">
+            <div class="container">
+                <div class="referral-banner referral-banner-container">
+                    <div class="referral-content">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 0.5rem;">
+                            <span style="font-size: 2.5rem;">💰</span>
+                            <span style="color: var(--accent); font-size: 2rem; font-weight: bold;">$50 CREDIT</span>
+                        </div>
+                        <h3 style="margin: 0 0 0.5rem 0;">Refer a Trucker, Earn $50</h3>
+                        <p style="color: var(--text-gray); margin: 0;">When they sign up for <strong
+                                style="color: var(--accent);">any package</strong>, you get $50 off your next service.
+                            No limits!</p>
+                    </div>
+                    <a href="contact.html?ref=referral" class="btn btn-primary"
+                        style="padding: 15px 30px; font-size: 1.1rem;">Refer Now →</a>
+                </div>
+            </div>
+        </section>
 
         <section class="about-section">
             <div class="container">
@@ -314,7 +529,8 @@
                         <a href="contact.html" class="btn">Meet The Team</a>
                     </div>
                     <div>
-                        <img src="./public/about-image.png" alt="Jayboi Services Logistics Team"
+                        <img src="./public/about-image.webp"
+                            alt="Jayboi Services Logistics Team working together in office"
                             style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
                     </div>
                 </div>
@@ -325,7 +541,7 @@
     <footer>
         <div class="container footer-content">
             <div class="logo">
-                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+                <img src="./logo-transparent.webp" alt="Jayboi Services, LLC" class="logo-img">
             </div>
             <div class="contact-info">
                 <div class="contact-item">
@@ -344,6 +560,24 @@
     </footer>
 
     <script type="module" src="main.js"></script>
+    <script src="js/email-popup.js"></script>
+
+    <!-- Tawk.to Live Chat Widget -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/696e8a1e90d3801981df8760/1jfbsn2bq';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!-- End Tawk.to Widget -->
+
+    <!-- JayBot AI Chatbot -->
+    <script src="js/dispatch-bot.js"></script>
 </body>
 
 </html>

@@ -2,14 +2,10 @@ rules_version = '2';
 
 service firebase.storage {
   match /b/{bucket}/o {
-    // Helper: Check if user is Owner/Admin
+    // Helper: Check if user is Owner/Admin via Firestore
     function isAdmin() {
-      return request.auth != null && (
-        request.auth.token.email == "theboiblazin2026@gmail.com" ||
-        request.auth.token.email == "admin@verify.com" ||
-        request.auth.token.email == "admin@nexus.com" ||
-        request.auth.token.email == "admin@test.com"
-      );
+      return request.auth != null && 
+             firestore.exists(/databases/(default)/documents/admins/$(request.auth.uid));
     }
     
     // User Files - each user can only access their own folder

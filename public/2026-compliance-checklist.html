@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Trucking Compliance Checklist - Jayboi Services</title>
+    <style>
+        @page {
+            margin: 0.5in;
+            size: letter;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.4;
+            color: #1a1a1a;
+            background: white;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0a192f 0%, #112240 100%);
+            color: white;
+            padding: 20px 30px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 22pt;
+            color: #64ffda;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 10pt;
+            opacity: 0.9;
+        }
+
+        .header .contact {
+            float: right;
+            text-align: right;
+            font-size: 9pt;
+        }
+
+        .header .contact strong {
+            color: #64ffda;
+        }
+
+        .content {
+            padding: 0 30px;
+        }
+
+        .section {
+            margin-bottom: 18px;
+            page-break-inside: avoid;
+        }
+
+        .section-title {
+            background: #0a192f;
+            color: #64ffda;
+            padding: 8px 15px;
+            font-size: 12pt;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-left: 4px solid #64ffda;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 8px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .checkbox {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #0a192f;
+            margin-right: 12px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .item-content strong {
+            display: block;
+            font-size: 10.5pt;
+        }
+
+        .item-content .note {
+            font-size: 9pt;
+            color: #666;
+        }
+
+        .footer {
+            background: #f5f5f5;
+            padding: 15px 30px;
+            margin-top: 20px;
+            border-top: 3px solid #64ffda;
+            text-align: center;
+        }
+
+        .footer h3 {
+            color: #0a192f;
+            font-size: 11pt;
+            margin-bottom: 5px;
+        }
+
+        .footer p {
+            font-size: 9pt;
+            color: #444;
+        }
+
+        .footer .cta {
+            display: inline-block;
+            background: #64ffda;
+            color: #0a192f;
+            padding: 8px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+
+        .two-columns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header" id="pdf-header">
+        <div class="contact">
+            <strong>📞 470-484-4814</strong><br>
+            ✉️ info@jayboiservicesllc.com<br>
+            🌐 jayboiservicesllc.com
+        </div>
+        <h1>🚛 2026 Trucking Compliance Checklist</h1>
+        <p>Stay DOT-Ready All Year Long | Provided by Jayboi Services, LLC</p>
+    </div>
+
+    <!-- Download/Print Buttons (Hidden in print) -->
+    <div id="action-buttons" style="text-align: center; padding: 15px; background: #eee;">
+        <button onclick="downloadPDF()"
+            style="background: #64ffda; color: #0a192f; border: none; padding: 12px 24px; font-size: 14px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-right: 10px;">
+            📥 Download PDF
+        </button>
+        <button onclick="window.print()"
+            style="background: #0a192f; color: white; border: none; padding: 12px 24px; font-size: 14px; font-weight: bold; border-radius: 6px; cursor: pointer;">
+            🖨️ Print Checklist
+        </button>
+    </div>
+
+    <!-- html2pdf library for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        function downloadPDF() {
+            // Hide buttons during PDF generation
+            document.getElementById('action-buttons').style.display = 'none';
+
+            const element = document.body;
+            const opt = {
+                margin: 0.3,
+                filename: '2026-Trucking-Compliance-Checklist.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, useCORS: true },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Show buttons again after PDF is generated
+                document.getElementById('action-buttons').style.display = 'block';
+            });
+        }
+    </script>
+
+    <style>
+        @media print {
+            #action-buttons {
+                display: none !important;
+            }
+        }
+    </style>
+
+    <div class="content">
+
+        <div class="two-columns">
+            <div class="column">
+
+                <!-- Section 1 -->
+                <div class="section">
+                    <div class="section-title">📋 Quarterly & Annual Tax Filings</div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <strong>IFTA Fuel Tax</strong>
+                            <span class="note">Due: Apr 30, Jul 31, Oct 31, Jan 31</span>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <strong>IRS Form 2290 (HVUT)</strong>
+                            <span class="note">Due annually by August 31st</span>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <strong>UCR Registration</strong>
+                            <span class="note">Renew annually (opens Oct 1st)</span>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <strong>IRP Registration</strong>
+                            <span class="note">Renew annually with your base state</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2 -->
+                <div class="section">
+                    <div class="section-title">🧪 Drug & Alcohol Compliance</div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <strong>Consortium Enrollment</strong>
+                            <span class="note">Must be active in a random testing pool</span>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <strong>FMCSA Clearinghouse Query</strong>
+                            <span class="note">Run annual query for all CDL drivers</span>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <strong>Pre-Employment Drug Test</strong>
+                            <span class="note">Required before first drive</span>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <strong>Drug & Alcohol Policy</strong>
+                            <span class="note">Written policy signed by all drivers</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="column">
+
+                <!-- Section 3 -->
+                <div class="section">
+                    <div class="section-title">📁 Driver Qualification File (DQF)</div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content"><strong>Valid CDL (Class A/B)</strong></div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content"><strong>Medical Examiner's Certificate</strong></div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content"><strong>Annual MVR Review</strong></div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content"><strong>Employment Application (Long form)</strong></div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content"><strong>Road Test Certificate</strong></div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content"><strong>Previous Employer Inquiries (3 yrs)</strong></div>
+                    </div>
+                </div>
+
+                <!-- Section 4 -->
+                <div class="section">
+                    <div class="section-title">🚔 Vehicle Maintenance</div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <strong>Annual DOT Inspection (Truck)</strong>
+                            <span class="note">Valid sticker required</span>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content">
+                            <strong>Annual DOT Inspection (Trailer)</strong>
+                            <span class="note">Valid sticker required</span>
+                        </div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content"><strong>Daily DVIR Logbook (Last 7 days)</strong></div>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="checkbox"></div>
+                        <div class="item-content"><strong>Maintenance Records (Last 12 mos)</strong></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <h3>Need Help Checking These Off?</h3>
+        <p>Jayboi Services handles IFTA, 2290, DQF, and full compliance management so you can focus on driving.</p>
+        <a href="https://jayboiservicesllc.com/get-started.html" class="cta">Get Started Today →</a>
+    </div>
+
+</body>
+
+</html>

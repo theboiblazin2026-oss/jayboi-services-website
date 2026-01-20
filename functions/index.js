@@ -1,21 +1,19 @@
-const { googleAI } = require('@genkit-ai/googleai');
+
 const { genkit, z } = require('genkit');
 const { onRequest, onCall, HttpsError } = require('firebase-functions/v2/https');
 const { defineSecret } = require('firebase-functions/params');
 const admin = require('firebase-admin');
+const { vertexAI, gemini20Flash } = require('@genkit-ai/vertexai');
 
 // Initialize Firebase Admin
 if (admin.apps.length === 0) {
     admin.initializeApp();
 }
 
-// Define the secret
-const googleApiKey = defineSecret('GOOGLE_API_KEY');
-
-// Initialize Genkit with the Google AI plugin
+// Initialize Genkit with the Vertex AI plugin
 const ai = genkit({
-    plugins: [googleAI({ apiKey: process.env.GOOGLE_API_KEY })],
-    model: 'googleai/gemini-1.5-pro',
+    plugins: [vertexAI({ location: 'us-central1' })],
+    model: gemini20Flash,
 });
 
 // Define schemas
@@ -136,8 +134,122 @@ A: "For IFTA filing assistance, please call our team at 470-484-4814. They'll ge
     }
 );
 
+// Flow 3: Public Website Chatbot - INFORMATIONAL ONLY
+const dispatchBotFlow = ai.defineFlow(
+    {
+        name: "dispatchBotFlow",
+        inputSchema: z.object({
+            message: z.string(),
+            history: z.array(z.object({ role: z.string(), content: z.string() })).optional()
+        }),
+        outputSchema: z.string(),
+    },
+    async (input) => {
+        const userMsg = input.message;
+
+        const systemPrompt = `
+You are "JayBot", the AI Assistant for Jayboi Services, LLC.
+You provide INFORMATION ONLY about our services. You do NOT perform any actual services.
+
+=== CRITICAL RULES (NEVER BREAK THESE) ===
+1. You are INFORMATIONAL ONLY - you cannot file 2290s, do IFTA, or perform ANY service
+2. ALWAYS direct users to call 470-484-4814 or email info@jayboiservicesllc.com to GET STARTED
+3. NEVER try to process, sign up, or complete any service yourself
+4. NEVER give compliance advice that could replace our paid services
+5. For ANY action beyond basic info: "Please call 470-484-4814 to get started!"
+6. Keep responses SHORT (2-3 sentences max)
+
+=== ABOUT US ===
+• Owner: Calvin Manning
+• Phone: 470-484-4814 (mention this frequently!)
+• Email: info@jayboiservicesllc.com
+• Website: jayboiservicesllc.com
+• Experience: 15+ years in trucking compliance
+• Location: Georgia, serving clients nationwide
+
+=== SUBSCRIPTION PLANS ===
+• Starter ($100/mo): Safety compliance package, driver file management, 24/7 JayBot AI support, document storage, deadline alerts
+• Professional ($150/mo): Everything in Starter PLUS IFTA filing INCLUDED, 2290 filing INCLUDED, UCR renewal INCLUDED, priority phone support - "One Monthly Fee, Zero Stress"
+• Fleet ($350/mo): Up to 10 driver accounts, dedicated account manager, audit preparation support, custom reporting
+
+=== NEW AUTHORITY STARTUP PACKAGE ===
+• $1,099 one-time fee (SAVE $500+!)
+• Includes: MC Authority, DOT Number, BOC-3 Filing, UCR Registration, IFTA Setup, First 2290 Filing
+• Perfect for new trucking businesses - everything needed to get on the road legally
+• Most setups completed within 4-6 weeks
+
+=== INDIVIDUAL SERVICES & PRICING ===
+• 2290 Filing: $100 (same-day Schedule 1 proof available! 2 HOUR GUARANTEE!)
+• IFTA Quarterly Filing: $75 per quarter
+• MC/DOT Authority Setup: $599 (includes BOC-3 filing)
+• DOT Number Only: $299
+• Driver Qualification File Setup: $150 per driver
+• Annual Compliance Audit: $299
+• UCR Registration: $75
+• Drug Testing Consortium: $50/month
+
+=== DISPATCHING SERVICES ===
+• Rate: 5% of gross revenue per load
+• Includes: Load negotiation, route planning, back-office support
+• Dedicated dispatcher assigned to your account
+• 24/7 load board access
+
+=== PROCESSING TIMES ===
+• 2290 Filing: Same day (Schedule 1 proof within hours)
+• IFTA: 3-5 business days
+• MC Authority: 4-6 weeks (FMCSA processing)
+• DOT Number: 1-2 business days
+• Driver Files: 24-48 hours once documents received
+
+=== EXAMPLE RESPONSES ===
+
+User: "How much is 2290 filing?"
+You: "2290 filing is $100 with same-day Schedule 1 proof! Ready to get yours filed? Call us at 470-484-4814 or visit jayboiservicesllc.com/services.html"
+
+User: "Can you file my 2290?"
+You: "I can't file it directly, but our team can get your 2290 filed same-day! Call 470-484-4814 to get started - they'll have your Schedule 1 proof in hours!"
+
+User: "What is IFTA?"
+You: "IFTA is the International Fuel Tax Agreement - a quarterly tax filing required for trucks operating across state lines. We handle IFTA filings for $75/quarter. Want help with yours? Call 470-484-4814!"
+
+User: "I need help with compliance"
+You: "We'd love to help! Our compliance packages start at just $79/mo. Give us a call at 470-484-4814 and we'll get you squared away!"
+
+=== YOUR PERSONALITY ===
+• Friendly and professional
+• Use trucker-friendly language (10-4, haul, lane)
+• Always end with a call-to-action (call or email)
+• Be helpful but brief
+• Show enthusiasm for helping truckers
+
+Remember: You INFORM, you don't PERFORM. Always drive them to contact the business!
+`;
+
+        const { text } = await ai.generate({
+            prompt: userMsg,
+            system: systemPrompt,
+        });
+
+        return text;
+    }
+);
+
 // Export as Firebase HTTPS callable functions
-exports.processDriverDocument = onRequest({ secrets: [googleApiKey] }, async (req, res) => {
+exports.dispatchBot = onRequest(async (req, res) => {
+    try {
+        if (req.method !== 'POST') {
+            res.status(405).send('Method Not Allowed');
+            return;
+        }
+        const result = await dispatchBotFlow(req.body);
+        res.json({ response: result });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+exports.processDriverDocument = onRequest(async (req, res) => {
     try {
         if (req.method !== 'POST') {
             res.status(405).send('Method Not Allowed');
@@ -151,7 +263,7 @@ exports.processDriverDocument = onRequest({ secrets: [googleApiKey] }, async (re
     }
 });
 
-exports.chatDispatchHelper = onRequest({ secrets: [googleApiKey] }, async (req, res) => {
+exports.chatDispatchHelper = onRequest(async (req, res) => {
     try {
         if (req.method !== 'POST') {
             res.status(405).send('Method Not Allowed');
@@ -162,6 +274,60 @@ exports.chatDispatchHelper = onRequest({ secrets: [googleApiKey] }, async (req, 
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: error.message });
+    }
+});
+
+// Flow 4: Marketing Content Generator (Security: Hides API Key)
+const marketingContentFlow = ai.defineFlow(
+    {
+        name: 'marketingContentFlow',
+        inputSchema: z.object({
+            prompt: z.string(),
+        }),
+        outputSchema: z.object({
+            description: z.string(),
+            suggestedTitle: z.string(),
+        }),
+    },
+    async (input) => {
+        const prompt = `
+            You are a creative marketing expert for a logistics/trucking company.
+            Task: Create a vivid concept description for a marketing image based on this input: "${input.prompt}".
+            Also suggest a short, catchy title.
+            
+            Return JSON with properties: 'description' and 'suggestedTitle'.
+        `;
+        const { output } = await ai.generate({
+            prompt,
+            output: { format: 'json' }
+        });
+        return output;
+    }
+);
+
+exports.generateMarketingContent = onCall(async (request) => {
+    // Basic Auth Check
+    if (!request.auth) {
+        throw new HttpsError('unauthenticated', 'The function must be called while authenticated.');
+    }
+
+    // Admin/Owner Check validation 
+    // For now we allow any authenticated user (e.g. drivers) to use it as a tool, 
+    // OR we can restrict it. Let's restrict to admins for safety as it consumes quota.
+    const ownerEmail = "theboiblazin2026@gmail.com";
+    // Check if user is owner OR has admin custom claim
+    const isAdmin = request.auth.token.email === ownerEmail || request.auth.token.admin === true;
+
+    if (!isAdmin) {
+        throw new HttpsError('permission-denied', 'Only Admins can generate marketing content.');
+    }
+
+    try {
+        const result = await marketingContentFlow(request.data);
+        return result;
+    } catch (error) {
+        console.error("Marketing Gen Error:", error);
+        throw new HttpsError('internal', error.message);
     }
 });
 

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Service Fulfillment Guide | Jayboi Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="logo-transparent.webp">
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --text-light: #ccd6f6;
+            --text-gray: #8892b0;
+            --white: #ffffff;
+            --danger: #ef476f;
+        }
+
+        /* Print Styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            .card {
+                break-inside: avoid;
+                border: 1px solid #ccc !important;
+                box-shadow: none !important;
+                background: white !important;
+            }
+
+            a {
+                text-decoration: none !important;
+                color: black !important;
+            }
+
+            a::after {
+                content: " (" attr(href) ")";
+                font-size: 0.8em;
+                color: #555;
+            }
+
+            .btn {
+                border: 1px solid #333 !important;
+                color: black !important;
+            }
+
+            h1,
+            h2,
+            h3 {
+                color: black !important;
+            }
+        }
+
+        .no-print {
+            display: none !important;
+        }
+
+        body {
+            background: white;
+            color: black;
+        }
+
+        .fulfillment-card {
+            break-inside: avoid;
+            border: 1px solid #ccc;
+            box-shadow: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a::after {
+            content: " (" attr(href) ")";
+            font-size: 0.8rem;
+        }
+        }
+
+        /* Screen Styles */
+        body {
+            background: #f4f6f9;
+            color: #333;
+            padding-bottom: 80px;
+            /* Space for FAB */
+        }
+
+        .header-nav {
+            background: #0a192f;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-nav a.logo {
+            font-weight: 700;
+            color: #64ffda;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .container-guide {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .fulfillment-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid #64ffda;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #0a192f;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .service-price {
+            background: #e6f7ff;
+            color: #007bff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .section-header {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .script-box {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-left: 4px solid #0a192f;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .checklist-item input {
+            margin-top: 4px;
+        }
+
+        .action-btn {
+            display: inline-block;
+            background: #0a192f;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #112240;
+        }
+
+        .fab-print {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #64ffda;
+            color: #0a192f;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 2000;
+            font-size: 1.5rem;
+            border: none;
+        }
+
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+    </style>
+    <!-- Firebase Auth Check -->
+    <script type="module">
+        import { auth } from './js/firebase-config.js';
+        import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('loader').style.display = 'none';
+            } else {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="loader">Verifying Access...</div>
+
+    <header class="header-nav no-print">
+        <a href="admin.html" class="logo">← Admin Portal</a>
+        <button onclick="window.print()" class="action-btn" style="margin: 0; background: rgba(255,255,255,0.1);">🖨️
+            Print to PDF</button>
+    </header>
+
+    <div class="section-title">✅ Monthly Checklist</div>
+    <ul>
+        <li>Run "Compliance Check" in Admin Portal for this driver.</li>
+        <li>Verify Logbook Downloads (if managed).</li>
+        <li>Check upcoming expirations (CDL, Med Card, Plates).</li>
+        <li>Send monthly "All Clear" email via JayBot.</li>
+    </ul>
+    </div>
+
+    <!-- 9. NON-CDL COMPLIANCE -->
+    <div id="non-cdl" class="card">
+        <h2>Non-CDL Compliance Pkg <span class="price">$40/mo</span></h2>
+        <div class="section-title">✅ Monthly Checklist</div>
+        <ul>
+            <li>Ensure Driver Qualification File is up to date.</li>
+            <li>Verify Medical Card status.</li>
+            <li>Send quarterly maintenance reminders.</li>
+        </ul>
+    </div>
+
+    <!-- 10. DRIVER FILE -->
+    <div id="dq-file" class="card">
+        <h2>Driver Qualification File <span class="price">$223/yr</span></h2>
+        <div class="section-title">📥 Create File for Driver</div>
+        <ul>
+            <li>Application for Employment</li>
+            <li>Inquiry to Previous Employers (Safety Performance History)</li>
+            <li>MVR (Motor Vehicle Record) - Initial & Annual</li>
+            <li>Road Test Certificate</li>
+            <li>Medical Examiner's Certificate</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem; color: var(--text-gray); font-size: 0.8rem;">
+        CONFIDENTIAL: For Jayboi Services Admin Use Only
+    </div>
+
+    </div>
+
+    <!-- Floating Print Button for Mobile -->
+    <button onclick="window.print()" class="print-fab no-print" title="Print to PDF">
+        🖨️
+    </button>
+
+</body>
+
+</html>

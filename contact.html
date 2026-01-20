@@ -13,8 +13,9 @@
     <meta property="og:url" content="https://jayboiservicesllc.com/contact.html">
     <meta property="og:title" content="Contact Us | Jayboi Services">
     <meta property="og:description" content="Contact us for help with 2290 filings, IFTA, and dispatching.">
-    <meta property="og:image" content="https://jayboiservicesllc.com/public/logo-transparent.png">
+    <meta property="og:image" content="https://jayboiservicesllc.com/logo-transparent.png">
 
+    <link rel="canonical" href="https://jayboiservicesllc.com/contact.html">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
@@ -30,28 +31,60 @@
 
 <body>
 
+    <!-- FREE CHECKLIST ANNOUNCEMENT BANNER -->
+    <div id="promo-banner" class="promo-banner">
+        <a href="free-checklist.html">
+            🚛 <strong>FREE:</strong> Download the 2026 Trucking Compliance Checklist — Avoid DOT Fines!
+            <span>Get It Now →</span>
+        </a>
+        <button id="close-banner" class="promo-close">&times;</button>
+    </div>
+
+    <script>
+        // Adjust header position for banner
+        (function () {
+            const banner = document.getElementById('promo-banner');
+            const header = document.querySelector('header');
+            const closeBtn = document.getElementById('close-banner');
+
+            if (banner && header) {
+                const height = banner.offsetHeight;
+                header.style.top = height + 'px';
+
+                closeBtn.onclick = function () {
+                    banner.style.display = 'none';
+                    header.style.top = '0';
+                };
+            }
+        })();
+    </script>
+
     <header>
         <div class="container">
             <a href="index.html" class="logo">
-                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+                <img src="./logo-transparent.webp" alt="Jayboi Services, LLC - Trucking Compliance & Dispatching Logo"
+                    class="logo-img">
             </a>
             <div class="nav-wrapper">
                 <nav class="nav-pill">
                     <a href="index.html">Home</a>
                     <a href="services.html">Services</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="free-checklist.html" style="color: #64ffda;">Free Checklist</a>
                     <a href="contact.html" class="active">Contact</a>
                     <a href="driver-login.html">Client Portal</a>
                 </nav>
             </div>
-            <a href="services.html" class="btn">Get Started</a>
+            <a href="get-started.html" class="btn">Get Started</a>
         </div>
     </header>
 
     <main>
         <section class="hero hero-small">
             <div class="container">
-                <h1 class="text-center">Get In Touch</h1>
-                <p class="text-center" style="margin: 0 auto; color: var(--text-gray);">We are here to help you navigate
+                <h1 class="text-center">Contact Jayboi Services Compliance Team</h1>
+                <p class="text-center text-gray-auto" style="margin: 0 auto; color: var(--text-gray);">We are here to
+                    help you navigate
                     the road to compliance.</p>
             </div>
         </section>
@@ -113,7 +146,7 @@
                     <textarea id="message" name="message" rows="5" placeholder="Tell us more about your fleet..."
                         required></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                <button type="submit" class="btn btn-primary w-full">Send Message</button>
             </form>
         </section>
     </main>
@@ -121,7 +154,7 @@
     <footer>
         <div class="container footer-content">
             <div class="logo">
-                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+                <img src="./logo-transparent.webp" alt="Jayboi Services, LLC" class="logo-img">
             </div>
             <div class="contact-item">
                 <span>📞</span> 470-484-4814
@@ -135,6 +168,23 @@
     </footer>
 
     <script type="module" src="main.js"></script>
+    <script src="js/email-popup.js"></script>
+
+    <!-- Tawk.to Live Chat Widget -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/696e8a1e90d3801981df8760/1jfbsn2bq';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+
+    <!-- JayBot AI Chatbot -->
+    <script src="js/dispatch-bot.js"></script>
 </body>
 
 </html>

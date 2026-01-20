@@ -7,37 +7,7 @@
     <title>Client Portal Login | Jayboi Services</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background: var(--primary);
-        }
-
-        .login-card {
-            background: var(--secondary);
-            padding: 2.5rem;
-            border-radius: var(--radius);
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 10px 30px -10px rgba(2, 12, 27, 0.7);
-        }
-
-        .login-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .error-msg {
-            color: #ff6b6b;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: none;
-            text-align: center;
-        }
-    </style>
+    <!-- Login styles moved to style.css -->
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-N2NFX78MXW"></script>
     <script>
@@ -49,7 +19,7 @@
     </script>
 </head>
 
-<body>
+<body class="login-body">
     <div class="login-card">
         <div class="login-header">
             <h2 class="text-accent">Client Portal</h2>
@@ -67,19 +37,45 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" required placeholder="••••••••">
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Log In</button>
+            <div class="text-right-sm">
+                <a href="#" id="forgot-password" class="text-gray-sm-link">Forgot
+                    Password?</a>
+            </div>
+            <button type="submit" class="btn btn-primary w-full">Log In</button>
         </form>
-        <div style="text-align: center; margin-top: 1rem;">
-            <a href="index.html" style="color: var(--text-gray); font-size: 0.9rem;">Back to Home</a>
+        <div class="login-footer-link">
+            <a href="index.html" class="text-gray-sm">Back to Home</a>
         </div>
     </div>
 
     <script type="module">
         import { auth } from './js/firebase-config.js';
-        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
         const loginForm = document.getElementById('login-form');
         const errorMsg = document.getElementById('error-message');
+        const forgotPasswordLink = document.getElementById('forgot-password');
+
+        forgotPasswordLink.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            if (!email) {
+                errorMsg.textContent = "Please enter your email address first.";
+                errorMsg.style.display = 'block';
+                return;
+            }
+            try {
+                await sendPasswordResetEmail(auth, email);
+                errorMsg.textContent = "Password reset email sent! Check your inbox.";
+                errorMsg.style.color = "green"; // Temporary style change for success
+                errorMsg.style.display = 'block';
+            } catch (error) {
+                console.error(error);
+                errorMsg.textContent = "Error: " + error.message;
+                errorMsg.style.color = "#ff6b6b";
+                errorMsg.style.display = 'block';
+            }
+        });
 
         loginForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -87,6 +83,7 @@
             const password = document.getElementById('password').value;
 
             errorMsg.style.display = 'none';
+            errorMsg.style.color = "#ff6b6b"; // Reset color
 
             try {
                 // In a real app, we might check a 'role' claim here to ensure they are a client/driver

@@ -14,8 +14,9 @@
     <meta property="og:title" content="Free 2026 Trucking Compliance Checklist">
     <meta property="og:description"
         content="Avoid fines and stay legal. Get the ultimate guide for owner-operators completely free.">
-    <meta property="og:image" content="https://jayboiservicesllc.com/public/logo-transparent.png">
+    <meta property="og:image" content="https://jayboiservicesllc.com/logo-transparent.png">
 
+    <link rel="canonical" href="https://jayboiservicesllc.com/free-checklist.html">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
@@ -34,12 +35,16 @@
     <header>
         <div class="container">
             <a href="index.html" class="logo">
-                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+                <img src="./logo-transparent.webp" alt="Jayboi Services, LLC" class="logo-img">
             </a>
             <div class="nav-wrapper">
                 <nav class="nav-pill">
                     <a href="index.html">Home</a>
                     <a href="services.html">Services</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="free-checklist.html" class="active" style="color: #64ffda;">Free Checklist</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="driver-login.html">Client Portal</a>
                 </nav>
             </div>
             <a href="get-started.html" class="btn">Get Started</a>
@@ -47,7 +52,7 @@
     </header>
 
     <main>
-        <section class="hero hero-small" style="min-height: 40vh;">
+        <section class="hero hero-small hero-min-height">
             <div class="container">
                 <h1 class="text-center">Don't Get Shutdown by the DOT</h1>
                 <p class="text-center" style="margin: 0 auto; color: var(--text-gray);">Get the free 2026 Compliance
@@ -56,7 +61,7 @@
         </section>
 
         <section class="container mb-large">
-            <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+            <div class="grid grid-split">
 
                 <!-- Left: Benefits -->
                 <div class="text-content">
@@ -76,28 +81,110 @@
                 </div>
 
                 <!-- Right: Form -->
-                <div class="card" style="border: 2px solid var(--accent); padding: 2.5rem;">
+                <div class="card checklist-card">
                     <h3 class="text-center" style="margin-bottom: 1.5rem;">Get It Instantly</h3>
-                    <form action="https://formspree.io/f/xgoeldlb" method="POST">
-                        <input type="hidden" name="_subject" value="Checklist Download Request">
-                        <input type="hidden" name="_next"
-                            value="https://jayboiservicesllc.com/compliance-checklist.html">
-
+                    <form id="checklist-form">
                         <div class="form-group">
-                            <label for="name">First Name</label>
+                            <label for="name">First Name *</label>
                             <input type="text" id="name" name="name" placeholder="Enter your name" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Email Address</label>
+                            <label for="email">Email Address *</label>
                             <input type="email" id="email" name="email" placeholder="Enter your email" required>
                         </div>
 
-                        <button type="submit" class="btn btn-primary"
-                            style="width: 100%; font-size: 1.1rem; padding: 15px;">🚀 Send Me The Checklist</button>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Company / Business Name</label>
+                            <input type="text" id="company" name="company" placeholder="Your trucking company">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fleet_size">Fleet Size</label>
+                            <select id="fleet_size" name="fleet_size" class="checklist-select">
+                                <option value="">Select fleet size...</option>
+                                <option value="1">1 truck (Owner Operator)</option>
+                                <option value="2-5">2-5 trucks</option>
+                                <option value="6-10">6-10 trucks</option>
+                                <option value="11-25">11-25 trucks</option>
+                                <option value="25+">25+ trucks</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Services You're Interested In:</label>
+                            <div style="margin-top: 10px;">
+                                <div style="margin-bottom: 12px;">
+                                    <input type="checkbox" name="interests" value="2290" id="cb-2290">
+                                    <label for="cb-2290" style="margin-left: 8px;">2290 Filing</label>
+                                </div>
+                                <div style="margin-bottom: 12px;">
+                                    <input type="checkbox" name="interests" value="IFTA" id="cb-ifta">
+                                    <label for="cb-ifta" style="margin-left: 8px;">IFTA Filing</label>
+                                </div>
+                                <div style="margin-bottom: 12px;">
+                                    <input type="checkbox" name="interests" value="Dispatching" id="cb-dispatch">
+                                    <label for="cb-dispatch" style="margin-left: 8px;">Dispatching</label>
+                                </div>
+                                <div style="margin-bottom: 12px;">
+                                    <input type="checkbox" name="interests" value="Authority" id="cb-authority">
+                                    <label for="cb-authority" style="margin-left: 8px;">Authority Setup</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary checklist-btn" id="submit-btn">🚀 Send Me The
+                            Checklist</button>
                         <p style="font-size: 0.8rem; text-align: center; margin-top: 1rem; color: var(--text-gray);">We
                             respect your privacy. No spam.</p>
                     </form>
+
+                    <script>
+                        document.getElementById('checklist-form').addEventListener('submit', async function (e) {
+                            e.preventDefault();
+
+                            const btn = document.getElementById('submit-btn');
+                            btn.disabled = true;
+                            btn.textContent = 'Sending...';
+
+                            const formData = new FormData(this);
+
+                            // Get checked interests as comma-separated string
+                            const interests = [];
+                            document.querySelectorAll('input[name="interests"]:checked').forEach(cb => {
+                                interests.push(cb.value);
+                            });
+                            formData.set('interests', interests.join(', '));
+
+                            try {
+                                const response = await fetch('https://formspree.io/f/xgoeldlb', {
+                                    method: 'POST',
+                                    body: formData,
+                                    headers: {
+                                        'Accept': 'application/json'
+                                    }
+                                });
+
+                                if (response.ok) {
+                                    // Redirect to checklist page
+                                    window.location.href = '/public/2026-compliance-checklist.html';
+                                } else {
+                                    alert('There was an error. Please try again.');
+                                    btn.disabled = false;
+                                    btn.textContent = '🚀 Send Me The Checklist';
+                                }
+                            } catch (error) {
+                                alert('There was an error. Please try again.');
+                                btn.disabled = false;
+                                btn.textContent = '🚀 Send Me The Checklist';
+                            }
+                        });
+                    </script>
                 </div>
 
             </div>
@@ -112,15 +199,23 @@
 
     <script type="module" src="main.js"></script>
 
-    <!-- Mobile Responsive Fix for this page specific grid -->
-    <style>
-        @media (max-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr !important;
-                gap: 2rem !important;
-            }
-        }
-    </style>
+
+
+    <!-- Tawk.to Live Chat Widget -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/696e8a1e90d3801981df8760/1jfbsn2bq';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+
+    <!-- JayBot AI Chatbot -->
+    <script src="js/dispatch-bot.js"></script>
 </body>
 
 </html>

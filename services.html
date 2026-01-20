@@ -13,8 +13,9 @@
     <meta property="og:url" content="https://jayboiservicesllc.com/services.html">
     <meta property="og:title" content="Services & Pricing | Jayboi Services">
     <meta property="og:description" content="Transparent pricing for 2290 filing, IFTA, and dispatching services.">
-    <meta property="og:image" content="https://jayboiservicesllc.com/public/logo-transparent.png">
+    <meta property="og:image" content="https://jayboiservicesllc.com/logo-transparent.png">
 
+    <link rel="canonical" href="https://jayboiservicesllc.com/services.html">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <!-- Google tag (gtag.js) -->
@@ -30,15 +31,46 @@
 
 <body>
 
+    <!-- FREE CHECKLIST ANNOUNCEMENT BANNER -->
+    <div id="promo-banner">
+        <a href="free-checklist.html" style="color: #0a192f; text-decoration: none;">
+            🚛 <strong>FREE:</strong> Download the 2026 Trucking Compliance Checklist — Avoid DOT Fines!
+            <span style="text-decoration: underline; margin-left: 8px;">Get It Now →</span>
+        </a>
+        <button id="close-banner">&times;</button>
+    </div>
+
+    <script>
+        // Adjust header position for banner
+        (function () {
+            const banner = document.getElementById('promo-banner');
+            const header = document.querySelector('header');
+            const closeBtn = document.getElementById('close-banner');
+
+            if (banner && header) {
+                const height = banner.offsetHeight;
+                header.style.top = height + 'px';
+
+                closeBtn.onclick = function () {
+                    banner.style.display = 'none';
+                    header.style.top = '0';
+                };
+            }
+        })();
+    </script>
+
     <header>
         <div class="container">
             <a href="index.html" class="logo">
-                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+                <img src="./logo-transparent.webp" alt="Jayboi Services, LLC - Trucking Compliance & Dispatching Logo"
+                    class="logo-img">
             </a>
             <div class="nav-wrapper">
                 <nav class="nav-pill">
                     <a href="index.html">Home</a>
                     <a href="services.html" class="active">Services</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="free-checklist.html" style="color: #64ffda;">Free Checklist</a>
                     <a href="contact.html">Contact</a>
                     <a href="driver-login.html">Client Portal</a>
                 </nav>
@@ -58,37 +90,36 @@
 
         <section class="container mb-large">
             <div class="grid mb-large">
-                <div class="card" style="border: 1px solid var(--accent);">
+                <div class="card card-border-accent">
                     <div class="card-icon">🚛</div>
                     <h3>Dispatching Services</h3>
                     <p>We negotiate the best rates so you maximize profit on every load. Our comprehensive back-office
                         support handles all the paperwork, letting you focus on driving.</p>
-                    <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">Service Fee: 8-10%</p>
-                    <ul style="margin-top: 1rem; color: var(--text-light);">
+                    <p class="text-accent font-bold mt-sm">Service Fee: 8-10%</p>
+                    <ul class="check-list">
                         <li>✅ Rate Negotiation</li>
                         <li>✅ Route Planning</li>
                         <li>✅ Driver Management</li>
                         <li>✅ Invoicing & Collections</li>
                     </ul>
-                    <a href="contact.html?service=dispatching" class="btn"
-                        style="width: 100%; text-align: center; margin-top: 1.5rem;">Get a Quote</a>
+                    <a href="dispatching.html" class="btn"
+                        style="width: 100%; text-align: center; margin-top: 1.5rem;">Learn More & Start</a>
                 </div>
-                <div class="card" style="border: 1px solid var(--accent);">
+                <div class="card card-border-accent">
                     <div class="card-icon">📄</div>
                     <h3>2290 Filing Experts</h3>
                     <p>Don't let the IRS slow you down. We provide fast, accurate, and electronic filing for your Heavy
                         Highway Vehicle Use Tax (Form 2290).</p>
-                    <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">Service Fee: $100 + IRS fees
+                    <p class="text-accent font-bold mt-sm">Service Fee: $100 + IRS fees
                     </p>
-                    <ul style="margin-top: 1rem; color: var(--text-light);">
+                    <ul class="check-list">
                         <li>✅ Same-Day Proof (Schedule 1)</li>
                         <li>✅ VIN Corrections</li>
                         <li>✅ Weight Increase Filings</li>
                         <li>✅ <strong>Secure & Fast</strong> processing</li>
                     </ul>
-                    <a href="https://buy.stripe.com/aFa00cf4K5mleEeclf0oM00" class="btn btn-primary"
-                        style="width: 100%; text-align: center; margin-top: 1.5rem;" target="_blank"
-                        rel="noopener noreferrer">File Now - $100</a>
+                    <a href="2290-filing.html" class="btn btn-primary"
+                        style="width: 100%; text-align: center; margin-top: 1.5rem;">File Now - $100</a>
                 </div>
             </div>
 
@@ -98,103 +129,94 @@
                 <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
 
                     <!-- MC/DOT Authority Setup -->
-                    <div class="card" style="border: 1px solid var(--accent);">
+                    <div class="card card-border-accent">
                         <h3>MC/DOT Authority Setup</h3>
                         <p>Complete setup for your operating authority.</p>
-                        <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">$900.00 (One-time)</p>
-                        <a href="https://buy.stripe.com/28EfZa6yedSR1Rsfxr0oM04" class="btn btn-primary"
-                            style="width: 100%; text-align: center; margin-top: 1rem;" target="_blank"
-                            rel="noopener noreferrer">Buy Now</a>
+                        <p class="text-accent font-bold mt-sm">$900.00 (One-time)</p>
+                        <a href="authority-setup.html" class="btn btn-primary"
+                            style="width: 100%; text-align: center; margin-top: 1rem;">View Package Details</a>
                     </div>
 
                     <!-- Drug & Alcohol Consortium -->
-                    <div class="card" style="border: 1px solid var(--accent);">
+                    <div class="card card-border-accent">
                         <h3>Drug & Alcohol Consortium</h3>
                         <p>Annual enrollment in compliance consortium.</p>
-                        <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">$100.00 / year</p>
-                        <a href="https://buy.stripe.com/7sY9AM09QaGF53E70V0oM08" class="btn btn-primary"
-                            style="width: 100%; text-align: center; margin-top: 1rem;" target="_blank"
-                            rel="noopener noreferrer">Subscribe</a>
+                        <p class="text-accent font-bold mt-sm">$100.00 / year (+ facility
+                            fees)</p>
+                        <a href="fmcsa-clearinghouse.html" class="btn btn-primary"
+                            style="width: 100%; text-align: center; margin-top: 1rem;">View Details</a>
                     </div>
 
                     <!-- BOC-3 Filing -->
-                    <div class="card" style="border: 1px solid var(--accent);">
+                    <div class="card card-border-accent">
                         <h3>BOC-3 Filing</h3>
                         <p>Designation of Process Agents filing.</p>
-                        <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">$75.00 (One-time)</p>
-                        <a href="https://buy.stripe.com/9B614g9KqdSR0No70V0oM09" class="btn btn-primary"
-                            style="width: 100%; text-align: center; margin-top: 1rem;" target="_blank"
-                            rel="noopener noreferrer">Buy Now</a>
+                        <p class="text-accent font-bold mt-sm">$75.00 (One-time)</p>
+                        <a href="boc-3-filing.html" class="btn btn-primary"
+                            style="width: 100%; text-align: center; margin-top: 1rem;">File Now</a>
                     </div>
 
                     <!-- MCS-150 Update -->
-                    <div class="card" style="border: 1px solid var(--accent);">
+                    <div class="card card-border-accent">
                         <h3>MCS-150 Update</h3>
                         <p>Biennial update or deactivation.</p>
-                        <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">$150.00 (One-time)</p>
-                        <a href="https://buy.stripe.com/5kQ6oAg8OcON67Iclf0oM0a" class="btn btn-primary"
-                            style="width: 100%; text-align: center; margin-top: 1rem;" target="_blank"
-                            rel="noopener noreferrer">Buy Now</a>
+                        <p class="text-accent font-bold mt-sm">$150.00 (One-time)</p>
+                        <a href="mcs-150-update.html" class="btn btn-primary"
+                            style="width: 100%; text-align: center; margin-top: 1rem;">Update Now</a>
                     </div>
 
                     <!-- IFTA License & IRP Setup -->
-                    <div class="card" style="border: 1px solid var(--accent);">
+                    <div class="card card-border-accent">
                         <h3>IFTA License & IRP Setup</h3>
                         <p>Complete setup for fuel tax and registration.</p>
-                        <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">$399.00 (One-time)</p>
-                        <a href="https://buy.stripe.com/3cI5kw8GmcON7bMfxr0oM0b" class="btn btn-primary"
-                            style="width: 100%; text-align: center; margin-top: 1rem;" target="_blank"
-                            rel="noopener noreferrer">Buy Now</a>
+                        <p class="text-accent font-bold mt-sm">$399.00 (One-time)</p>
+                        <a href="ifta-irp.html" class="btn btn-primary"
+                            style="width: 100%; text-align: center; margin-top: 1rem;">Get Started</a>
                     </div>
 
                     <!-- Non-CDL Compliance Pkg -->
-                    <div class="card" style="border: 1px solid var(--accent);">
+                    <div class="card card-border-accent">
                         <h3>Non-CDL Compliance Pkg</h3>
                         <p>Essential compliance for non-CDL drivers.</p>
-                        <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">$40.00 / month</p>
-                        <a href="https://buy.stripe.com/6oU14ge0G3edeEe3OJ0oM0c" class="btn btn-primary"
-                            style="width: 100%; text-align: center; margin-top: 1rem;" target="_blank"
-                            rel="noopener noreferrer">Subscribe</a>
+                        <p class="text-accent font-bold mt-sm">$40.00 / month</p>
+                        <a href="non-cdl-compliance.html" class="btn btn-primary"
+                            style="width: 100%; text-align: center; margin-top: 1rem;">Subscribe</a>
                     </div>
 
                     <!-- Owner-Operator Bundle -->
-                    <div class="card" style="border: 1px solid var(--accent);">
+                    <div class="card card-border-accent">
                         <h3>Owner-Operator Bundle</h3>
                         <p>Comprehensive support for owner-operators.</p>
-                        <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">$100.00 / month</p>
-                        <a href="https://buy.stripe.com/14AdR24q6g0ZdAa3OJ0oM07" class="btn btn-primary"
-                            style="width: 100%; text-align: center; margin-top: 1rem;" target="_blank"
-                            rel="noopener noreferrer">Subscribe</a>
+                        <p class="text-accent font-bold mt-sm">$100.00 / month</p>
+                        <a href="owner-operator-bundle.html" class="btn btn-primary"
+                            style="width: 100%; text-align: center; margin-top: 1rem;">Subscribe</a>
                     </div>
 
                     <!-- Driver Qualification File -->
-                    <div class="card" style="border: 1px solid var(--accent);">
+                    <div class="card card-border-accent">
                         <h3>Driver Qualification File</h3>
                         <p>Maintenance of driver qualification files.</p>
-                        <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">$223.00 / year</p>
-                        <a href="https://buy.stripe.com/00w5kwf4K3edanY5WR0oM0d" class="btn btn-primary"
-                            style="width: 100%; text-align: center; margin-top: 1rem;" target="_blank"
-                            rel="noopener noreferrer">Subscribe</a>
+                        <p class="text-accent font-bold mt-sm">$223.00 / year</p>
+                        <a href="driver-files.html" class="btn btn-primary"
+                            style="width: 100%; text-align: center; margin-top: 1rem;">Get Audit Ready</a>
                     </div>
 
                     <!-- Full Back Office Consult -->
-                    <div class="card" style="border: 1px solid var(--accent);">
+                    <div class="card card-border-accent">
                         <h3>Full Back Office Consult</h3>
                         <p>Complete audit and setup of back office.</p>
-                        <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">$1,500.00 (One-time)</p>
-                        <a href="https://buy.stripe.com/7sY14g4q6bKJ3ZA0Cx0oM06" class="btn btn-primary"
-                            style="width: 100%; text-align: center; margin-top: 1rem;" target="_blank"
-                            rel="noopener noreferrer">Buy Now</a>
+                        <p class="text-accent font-bold mt-sm">$1,500.00 (One-time)</p>
+                        <a href="back-office-consult.html" class="btn btn-primary"
+                            style="width: 100%; text-align: center; margin-top: 1rem;">Book Audit</a>
                     </div>
 
                     <!-- Annual UCR Registration -->
-                    <div class="card" style="border: 1px solid var(--accent);">
+                    <div class="card card-border-accent">
                         <h3>Annual UCR Registration</h3>
                         <p>Unified Carrier Registration filing.</p>
-                        <p class="text-accent" style="font-weight: bold; margin-top: 0.5rem;">$170.00 (One-time)</p>
-                        <a href="https://buy.stripe.com/6oUeV68Gm7uteEe9930oM05" class="btn btn-primary"
-                            style="width: 100%; text-align: center; margin-top: 1rem;" target="_blank"
-                            rel="noopener noreferrer">Buy Now</a>
+                        <p class="text-accent font-bold mt-sm">$170.00 (One-time)</p>
+                        <a href="ucr-registration.html" class="btn btn-primary"
+                            style="width: 100%; text-align: center; margin-top: 1rem;">File Now</a>
                     </div>
 
                 </div>
@@ -209,16 +231,15 @@
                 <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
 
                     <!-- STARTER PACKAGE -->
-                    <div class="card" style="border: 2px solid var(--tertiary); position: relative;">
+                    <div class="card card-border-tertiary">
                         <div style="text-align: center; padding: 1rem 0;">
-                            <span
-                                style="background: var(--tertiary); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase;">Starter</span>
-                            <h3 style="font-size: 2.5rem; margin: 1rem 0 0.25rem;">$49<span
+                            <span class="badge-starter">Starter</span>
+                            <h3 style="font-size: 2.5rem; margin: 1rem 0 0.25rem;">$100<span
                                     style="font-size: 1rem; color: var(--text-gray);">/mo</span></h3>
                             <p style="color: var(--text-gray); font-size: 0.9rem;">Perfect for owner-operators</p>
                         </div>
                         <hr style="border: none; border-top: 1px solid var(--tertiary); margin: 1rem 0;">
-                        <ul style="color: var(--text-light); list-style: none; padding: 0; margin: 0;">
+                        <ul class="check-list">
                             <li style="padding: 0.5rem 0;">✅ Driver Portal Access</li>
                             <li style="padding: 0.5rem 0;">✅ Document Storage (5GB)</li>
                             <li style="padding: 0.5rem 0;">✅ Basic AI Chat Support</li>
@@ -227,26 +248,23 @@
                             <li style="padding: 0.5rem 0; color: var(--text-gray);">❌ 2290 Filing Included</li>
                             <li style="padding: 0.5rem 0; color: var(--text-gray);">❌ Priority Support</li>
                         </ul>
-                        <a href="https://buy.stripe.com/cNidR2f4KdSR8fQbhb0oM03" class="btn"
-                            style="width: 100%; text-align: center; margin-top: 1.5rem;" target="_blank"
-                            rel="noopener noreferrer">Subscribe - $49/mo</a>
+                        <a href="https://buy.stripe.com/28E3co6ye4ih1Rsad70oM0e" class="btn"
+                            style="width: 100%; border: 1px solid var(--tertiary); background: transparent; color: var(--tertiary);"
+                            target="_blank" rel="noopener noreferrer">Subscribe - $100/mo</a>
                     </div>
 
                     <!-- PROFESSIONAL PACKAGE (MOST POPULAR) -->
-                    <div class="card"
-                        style="border: 2px solid var(--accent); position: relative; transform: scale(1.05);">
-                        <div
-                            style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--primary); padding: 4px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase;">
+                    <div class="card card-border-highlight">
+                        <div class="popular-badge">
                             Most Popular</div>
                         <div style="text-align: center; padding: 1rem 0;">
-                            <span
-                                style="background: var(--accent); color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase; font-weight: bold;">Professional</span>
-                            <h3 style="font-size: 2.5rem; margin: 1rem 0 0.25rem; color: var(--accent);">$149<span
+                            <span class="badge-pro">Professional</span>
+                            <h3 style="font-size: 2.5rem; margin: 1rem 0 0.25rem; color: var(--accent);">$150<span
                                     style="font-size: 1rem; color: var(--text-gray);">/mo</span></h3>
                             <p style="color: var(--text-gray); font-size: 0.9rem;">Full-service for serious drivers</p>
                         </div>
                         <hr style="border: none; border-top: 1px solid var(--accent); margin: 1rem 0;">
-                        <ul style="color: var(--text-light); list-style: none; padding: 0; margin: 0;">
+                        <ul class="check-list">
                             <li style="padding: 0.5rem 0;">✅ Everything in Starter</li>
                             <li style="padding: 0.5rem 0;">✅ Document Storage (25GB)</li>
                             <li style="padding: 0.5rem 0;">✅ <strong>Advanced AI Assistant</strong></li>
@@ -255,22 +273,21 @@
                             <li style="padding: 0.5rem 0;">✅ Priority Email Support</li>
                             <li style="padding: 0.5rem 0; color: var(--text-gray);">❌ Dedicated Account Manager</li>
                         </ul>
-                        <a href="https://buy.stripe.com/6oUcMYf4KbKJ7bMclf0oM02" class="btn btn-primary"
-                            style="width: 100%; text-align: center; margin-top: 1.5rem;" target="_blank"
-                            rel="noopener noreferrer">Subscribe - $149/mo</a>
+                        <a href="https://buy.stripe.com/dRm5kw4q69CB2Vwetn0oM0f" class="btn btn-primary"
+                            style="width: 100%; box-shadow: 0 4px 14px rgba(100, 255, 218, 0.4);" target="_blank"
+                            rel="noopener noreferrer">Subscribe - $150/mo</a>
                     </div>
 
                     <!-- FLEET PACKAGE -->
-                    <div class="card" style="border: 2px solid var(--tertiary); position: relative;">
+                    <div class="card card-border-tertiary">
                         <div style="text-align: center; padding: 1rem 0;">
-                            <span
-                                style="background: linear-gradient(135deg, #667eea, #764ba2); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; text-transform: uppercase;">Fleet</span>
-                            <h3 style="font-size: 2.5rem; margin: 1rem 0 0.25rem;">$349<span
+                            <span class="badge-fleet">Fleet</span>
+                            <h3 style="font-size: 2.5rem; margin: 1rem 0 0.25rem;">$350<span
                                     style="font-size: 1rem; color: var(--text-gray);">/mo</span></h3>
                             <p style="color: var(--text-gray); font-size: 0.9rem;">For fleets & companies</p>
                         </div>
                         <hr style="border: none; border-top: 1px solid var(--tertiary); margin: 1rem 0;">
-                        <ul style="color: var(--text-light); list-style: none; padding: 0; margin: 0;">
+                        <ul class="check-list">
                             <li style="padding: 0.5rem 0;">✅ Everything in Professional</li>
                             <li style="padding: 0.5rem 0;">✅ <strong>Unlimited Document Storage</strong></li>
                             <li style="padding: 0.5rem 0;">✅ Up to <strong>10 Driver Accounts</strong></li>
@@ -279,9 +296,9 @@
                             <li style="padding: 0.5rem 0;">✅ Phone Support (Priority)</li>
                             <li style="padding: 0.5rem 0;">✅ API Access for Integrations</li>
                         </ul>
-                        <a href="https://buy.stripe.com/aFaaEQf4K021bs2etn0oM01" class="btn"
-                            style="width: 100%; text-align: center; margin-top: 1.5rem;" target="_blank"
-                            rel="noopener noreferrer">Subscribe - $349/mo</a>
+                        <a href="https://buy.stripe.com/fZu00c2hY3ed0Nodpj0M0g" class="btn"
+                            style="width: 100%; border: 1px solid var(--tertiary); background: transparent; color: var(--tertiary);"
+                            target="_blank" rel="noopener noreferrer">Subscribe - $350/mo</a>
                     </div>
 
                 </div>
@@ -297,7 +314,7 @@
     <footer>
         <div class="container footer-content">
             <div class="logo">
-                <img src="./logo-transparent.png" alt="Jayboi Services, LLC" class="logo-img">
+                <img src="./logo-transparent.webp" alt="Jayboi Services, LLC" class="logo-img">
             </div>
             <div class="contact-item">
                 <span>📞</span> 470-484-4814
@@ -315,6 +332,23 @@
     </footer>
 
     <script type="module" src="main.js"></script>
+    <script src="js/email-popup.js"></script>
+
+    <!-- Tawk.to Live Chat Widget -->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/696e8a1e90d3801981df8760/1jfbsn2bq';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+
+    <!-- JayBot AI Chatbot -->
+    <script src="js/dispatch-bot.js"></script>
 </body>
 
 </html>

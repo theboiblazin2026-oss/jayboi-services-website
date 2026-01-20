@@ -1,5 +1,6 @@
 import { db } from './js/firebase-config.js';
 import { doc, getDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { sanitizeInput, rateLimiter, showToast, validateEmail, validatePhone } from './js/utils.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Current Year Update
@@ -22,6 +23,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (onboardingForm) {
         onboardingForm.addEventListener('submit', async function (e) {
             e.preventDefault();
+
+            if (!rateLimiter.check('onboarding-form', 3, 60000)) {
+                showToast('Too many attempts. Please wait a minute before trying again.', 'warning');
+                return;
+            }
+
             const submitButton = onboardingForm.querySelector('button[type="submit"]');
             const originalButtonText = submitButton.textContent;
             submitButton.textContent = 'Processing...';
@@ -37,6 +44,22 @@ document.addEventListener('DOMContentLoaded', async () => {
                 delete data['services[]'];
             }
 
+            if (data.email && !validateEmail(data.email)) {
+                showToast('Please enter a valid email address.', 'error');
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+                return;
+            }
+
+            if (data.phone && !validatePhone(data.phone)) {
+                showToast('Please enter a valid phone number.', 'error');
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+                return;
+            }
+
+            const sanitizedData = sanitizeInput(data);
+
             let firestoreSuccess = false;
             let formspreeSuccess = false;
             let errors = [];
@@ -44,7 +67,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             // 1. Try Firestore
             try {
                 await addDoc(collection(db, "requests"), {
-                    ...data,
+                    ...sanitizedData,
                     timestamp: new Date().toISOString(),
                     status: 'pending'
                 });
@@ -59,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             try {
                 const response = await fetch(onboardingForm.action, {
                     method: 'POST',
-                    body: JSON.stringify(data),
+                    body: JSON.stringify(sanitizedData),
                     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }
                 });
                 if (response.ok) {
@@ -76,11 +99,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             // 3. Determine Outcome
             if (firestoreSuccess || formspreeSuccess) {
-                alert("Request received! We have securely saved your information and will contact you shortly.");
-                window.location.href = 'index.html';
+                rateLimiter.reset('onboarding-form');
+                showToast('Request received! We have securely saved your information and will contact you shortly.', 'success');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
             } else {
                 console.error("All submissions failed:", errors);
-                alert("There was an issue submitting your request. Please call us directly at 470-484-4814.\nDetails: " + errors.join(", "));
+                showToast('There was an issue submitting your request. Please call us directly at 470-484-4814.', 'error');
                 submitButton.textContent = originalButtonText;
                 submitButton.disabled = false;
             }
@@ -101,17 +127,32 @@ document.addEventListener('DOMContentLoaded', async () => {
             const formData = new FormData(contactForm);
             const data = Object.fromEntries(formData.entries());
 
-            // Fix for checkbox array (services[]) which Object.fromEntries overwrites
             const services = formData.getAll('services[]');
             if (services.length > 0) {
                 data['services'] = services;
-                delete data['services[]']; // Clean up the raw key
+                delete data['services[]'];
             }
+
+            if (data.email && !validateEmail(data.email)) {
+                showToast('Please enter a valid email address.', 'error');
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+                return;
+            }
+
+            if (data.phone && !validatePhone(data.phone)) {
+                showToast('Please enter a valid phone number.', 'error');
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+                return;
+            }
+
+            const sanitizedData = sanitizeInput(data);
 
             try {
                 const response = await fetch(contactForm.action, {
                     method: 'POST',
-                    body: JSON.stringify(data),
+                    body: JSON.stringify(sanitizedData),
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json'
@@ -119,20 +160,24 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 if (response.ok) {
-                    // Success! Redirect manually
-                    window.location.href = 'success.html';
+                    rateLimiter.reset('contact-form');
+                    showToast('Message sent successfully! We\'ll get back to you soon.', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'success.html';
+                    }, 2000);
                 } else {
-                    const data = await response.json();
-                    if (Object.hasOwn(data, 'errors')) {
-                        alert(data["errors"].map(error => error["message"]).join(", "));
+                    const responseData = await response.json();
+                    if (Object.hasOwn(responseData, 'errors')) {
+                        showToast(responseData["errors"].map(error => error["message"]).join(", "), 'error');
                     } else {
-                        alert("Oops! There was a problem submitting your form");
+                        showToast("Oops! There was a problem submitting your form", 'error');
                     }
                     submitButton.textContent = originalButtonText;
                     submitButton.disabled = false;
                 }
             } catch (error) {
                 console.error('Error submitting form:', error);
+                showToast("Oops! There was a problem submitting your form", 'error');
                 alert("Oops! There was a problem submitting your form");
                 submitButton.textContent = originalButtonText;
                 submitButton.disabled = false;
