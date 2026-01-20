@@ -6,6 +6,79 @@ import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/
 import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 import { initAI } from './ai-marketing.js';
 
+// ========================
+// SESSION TIMEOUT SECURITY
+// ========================
+const SESSION_TIMEOUT_MS = 30 * 60 * 1000; // 30 minutes of inactivity
+let sessionTimeout = null;
+let warningTimeout = null;
+let lastActivity = Date.now();
+
+function resetSessionTimer() {
+    lastActivity = Date.now();
+
+    // Clear existing timeouts
+    if (sessionTimeout) clearTimeout(sessionTimeout);
+    if (warningTimeout) clearTimeout(warningTimeout);
+
+    // Hide warning if visible
+    const warningBanner = document.getElementById('session-warning');
+    if (warningBanner) warningBanner.style.display = 'none';
+
+    // Set warning at 25 minutes (5 min before timeout)
+    warningTimeout = setTimeout(() => {
+        showSessionWarning();
+    }, SESSION_TIMEOUT_MS - (5 * 60 * 1000));
+
+    // Set actual timeout at 30 minutes
+    sessionTimeout = setTimeout(() => {
+        handleSessionTimeout();
+    }, SESSION_TIMEOUT_MS);
+}
+
+function showSessionWarning() {
+    let warningBanner = document.getElementById('session-warning');
+    if (!warningBanner) {
+        warningBanner = document.createElement('div');
+        warningBanner.id = 'session-warning';
+        warningBanner.innerHTML = `
+            <div style="position: fixed; top: 0; left: 0; right: 0; background: #ffd166; color: #333; padding: 12px 20px; text-align: center; z-index: 9999; font-weight: bold;">
+                ⚠️ Your session will expire in 5 minutes due to inactivity. 
+                <button onclick="window.extendSession()" style="margin-left: 15px; padding: 5px 15px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer;">Stay Logged In</button>
+            </div>
+        `;
+        document.body.prepend(warningBanner);
+    }
+    warningBanner.style.display = 'block';
+}
+
+function handleSessionTimeout() {
+    // Clear all timeouts
+    if (sessionTimeout) clearTimeout(sessionTimeout);
+    if (warningTimeout) clearTimeout(warningTimeout);
+
+    alert("⏰ Your session has expired due to inactivity. Please log in again.");
+    signOut(auth).then(() => {
+        window.location.href = 'login.html';
+    });
+}
+
+window.extendSession = function () {
+    resetSessionTimer();
+    console.log("Session extended");
+};
+
+// Track user activity
+const activityEvents = ['mousedown', 'mousemove', 'keydown', 'scroll', 'touchstart', 'click'];
+activityEvents.forEach(event => {
+    document.addEventListener(event, () => {
+        // Only reset if more than 1 second since last activity (prevent constant resets)
+        if (Date.now() - lastActivity > 1000) {
+            resetSessionTimer();
+        }
+    }, { passive: true });
+});
+
 // Initialize Functions
 const functions = getFunctions();
 
@@ -130,6 +203,7 @@ onAuthStateChanged(auth, async (user) => {
 
         loadDashboardData(); // Load data when logged in
         initAI(); // Initialize AI Marketing Studio
+        resetSessionTimer(); // Start session timeout timer for security
     } else {
         console.log("No user logged in, redirecting...");
         window.location.href = 'login.html';
