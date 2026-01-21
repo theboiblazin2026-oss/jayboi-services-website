@@ -92,8 +92,9 @@
         </section>
 
         <section class="container mb-large">
-            <form class="contact-form" id="contactForm" action="https://formspree.io/f/xgoeldlb" method="POST">
+            <form class="contact-form" id="contactForm">
                 <input type="hidden" name="_subject" value="General Contact Inquiry">
+                <input type="hidden" name="service" id="service" value="General Inquiry">
                 <div class="form-group">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" placeholder="John Doe" required>
@@ -187,6 +188,8 @@
 
     <!-- JayBot AI Chatbot -->
     <script src="js/dispatch-bot.js"></script>
+    <!-- Contact Form Handler (Google Sheets + Formspree) -->
+    <script src="js/contact_form_handler.js"></script>
 </body>
 
 </html>
