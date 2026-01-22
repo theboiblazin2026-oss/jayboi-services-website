@@ -62,7 +62,7 @@
         </section>
 
         <section class="container mb-large">
-            <form class="contact-form" id="onboardingForm" action="https://formspree.io/f/xgoeldlb" method="POST">
+            <form class="contact-form" id="onboardingForm">
                 <input type="hidden" name="_subject" value="New Client Onboarding Request">
 
                 <h3
@@ -139,18 +139,64 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="package-select">Membership Package (Optional)</label>
+                    <select id="package-select" name="package_selection" class="checklist-select">
+                        <option value="">Select a Package...</option>
+                        <option value="starter">Starter - $125/mo</option>
+                        <option value="pro">Professional - $175/mo</option>
+                        <option value="fleet">Fleet - $375/mo</option>
+                        <option value="authority">Authority Startup - $1,099</option>
+                    </select>
+                </div>
+
+                <input type="hidden" name="_redirect" id="redirect-url">
+
+                <div class="form-group">
                     <label for="message">Additional Notes / Specific Questions</label>
                     <textarea id="message" name="message" rows="4"
                         placeholder="How many trucks do you have? Any specific deadlines?"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Submit
-                    Request</button>
-                <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-gray);">We usually
-                    respond within 24 hours.</p>
+                    Request & Continue to Payment</button>
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-gray);">
+                    You will be redirected to the secure payment page after submission.
+                </p>
             </form>
         </section>
     </main>
+
+    <script>
+        // Handle URL Params and Redirect Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const packageSelect = document.getElementById('package-select');
+            const redirectInput = document.getElementById('redirect-url');
+
+            // Stripe URLs
+            const urls = {
+                'starter': 'https://buy.stripe.com/14A5kwg8O9CBanYfxr0oM0i',
+                'pro': 'https://buy.stripe.com/aFa3co4q6cON3ZA4SN0oM0j',
+                'fleet': 'https://buy.stripe.com/7sY7sE9Kq9CBcw630J0oM0k',
+                'authority': 'https://buy.stripe.com/00w00c6ye5ml7bMdpj0M0h'
+            };
+
+            // Pre-select from URL
+            if (params.has('package')) {
+                const pkg = params.get('package');
+                if (urls[pkg]) {
+                    packageSelect.value = pkg;
+                    redirectInput.value = urls[pkg];
+                }
+            }
+
+            // Update redirect on change
+            packageSelect.addEventListener('change', (e) => {
+                const val = e.target.value;
+                redirectInput.value = urls[val] || '';
+            });
+        });
+    </script>
 
     <footer>
         <div class="container footer-content">
@@ -169,6 +215,8 @@
     </footer>
 
     <script type="module" src="main.js"></script>
+    <!-- Contact Form Handler (Google Sheets + Formspree) -->
+    <script src="js/contact_form_handler.js"></script>
 </body>
 
 </html>

@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     hiddenElements.forEach((el) => observer.observe(el));
 
     // --- ONBOARDING FORM HANDLER ---
+    // DISABLED: Handled by js/contact_form_handler.js to support Stripe redirects
+    /*
     const onboardingForm = document.getElementById('onboardingForm');
     if (onboardingForm) {
         onboardingForm.addEventListener('submit', async function (e) {
@@ -112,6 +114,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
     }
+    */
 
     // --- CONTACT FORM AJAX HANDLING ---
     const contactForm = document.getElementById('contactForm');
