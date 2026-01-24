@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison Chart Mockup - Jayboi Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --tertiary: #1d3557;
+            --accent: #64ffda;
+            --text-light: #e6f1ff;
+            --text-gray: #8892b0;
+            --success: #4ade80;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--text-light) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 18px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--tertiary);
+        }
+
+        .comparison-table th {
+            background: var(--tertiary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table th:first-child {
+            text-align: left;
+            width: 30%;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-gray);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Column styling */
+        .col-diy {
+            background: rgba(239, 68, 68, 0.05);
+            color: var(--text-gray);
+        }
+
+        .col-basic {
+            background: rgba(245, 158, 11, 0.05);
+        }
+
+        .col-full {
+            background: rgba(100, 255, 218, 0.08);
+            position: relative;
+        }
+
+        .col-full.header {
+            background: rgba(100, 255, 218, 0.15);
+        }
+
+        /* Popular badge */
+        .popular-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--primary);
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        /* Icons */
+        .check {
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .cross {
+            color: var(--danger);
+            font-size: 1.2rem;
+        }
+
+        .included {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .price-tag {
+            color: var(--warning);
+            font-weight: 600;
+        }
+
+        .muted {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-row td {
+            padding: 25px 20px !important;
+            border-bottom: none !important;
+        }
+
+        .price-display {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 10px;
+        }
+
+        .price-display strong {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--tertiary);
+            color: var(--text-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px 10px;
+                font-size: 0.85rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .popular-badge {
+                font-size: 0.55rem;
+            }
+        }
+
+        .note {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--secondary);
+            border-radius: 12px;
+            border: 1px dashed var(--accent);
+        }
+
+        .note h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .note p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="section-header">
+            <h2>Why Choose Full-Service Compliance?</h2>
+            <p>Stop juggling deadlines. Let us handle everything.</p>
+        </div>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th class="col-diy">DIY</th>
+                    <th class="col-basic">Pay As You Go</th>
+                    <th class="col-full header">
+                        <span class="popular-badge">Most Popular</span><br>
+                        Full-Service
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2290 HVUT Filing</td>
+                    <td class="col-diy muted">You file yourself</td>
+                    <td class="col-basic"><span class="price-tag">$100/filing</span></td>
+                    <td class="col-full"><span class="included">✅ INCLUDED</span></td>
+                </tr>
+                <tr>
+                    <td>IFTA Quarterly Filing</td>
+                    <td class="col-diy muted">Calculate yourself</td>
+                    <td class="col-basic"><span class="price-tag">$75/quarter</span></td>
+                    <td class="col-full"><span class="included">✅ INCLUDED</span></td>
+                </tr>
+                <tr>
+                    <td>UCR Registration</td>
+                    <td class="col-diy muted">You handle it</td>
+                    <td class="col-basic"><span class="price-tag">$75/year</span></td>
+                    <td class="col-full"><span class="included">✅ INCLUDED</span></td>
+                </tr>
+                <tr>
+                    <td>Compliance Reminders</td>
+                    <td class="col-diy"><span class="cross">❌</span> None</td>
+                    <td class="col-basic muted">Email only</td>
+                    <td class="col-full"><span class="included">✅ Portal + Email + Text</span></td>
+                </tr>
+                <tr>
+                    <td>Support</td>
+                    <td class="col-diy"><span class="cross">❌</span> None</td>
+                    <td class="col-basic muted">Business hours</td>
+                    <td class="col-full"><span class="included">✅ 24/7 Priority</span></td>
+                </tr>
+                <tr>
+                    <td>Driver Portal Access</td>
+                    <td class="col-diy"><span class="cross">❌</span></td>
+                    <td class="col-basic"><span class="cross">❌</span></td>
+                    <td class="col-full"><span class="check">✅</span></td>
+                </tr>
+                <tr>
+                    <td>Document Storage</td>
+                    <td class="col-diy"><span class="cross">❌</span></td>
+                    <td class="col-basic"><span class="cross">❌</span></td>
+                    <td class="col-full"><span class="included">✅ 5GB Secured</span></td>
+                </tr>
+                <tr>
+                    <td>JayBot AI Assistant</td>
+                    <td class="col-diy"><span class="cross">❌</span></td>
+                    <td class="col-basic"><span class="cross">❌</span></td>
+                    <td class="col-full"><span class="included">✅ 24/7 AI Help</span></td>
+                </tr>
+                <tr class="cta-row">
+                    <td></td>
+                    <td class="col-diy">
+                        <div class="price-display">
+                            <strong>$0</strong>/mo<br>
+                            <small>+ your time</small>
+                        </div>
+                    </td>
+                    <td class="col-basic">
+                        <div class="price-display">
+                            <strong>Pay per service</strong><br>
+                            <small>No commitment</small>
+                        </div>
+                        <a href="#" class="btn btn-outline">View Services</a>
+                    </td>
+                    <td class="col-full">
+                        <div class="price-display">
+                            Starting at <strong>$175</strong>/mo
+                        </div>
+                        <a href="#" class="btn btn-primary">Get Started →</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="note">
+            <h3>📋 Preview Note</h3>
+            <p>This is a mockup for your approval. The pricing shown ($75/quarter for IFTA, etc.) are placeholders.<br>
+                Let me know if you want to adjust any prices, features, or wording before I add this to your site.</p>
+        </div>
+    </div>
+</body>
+
+</html>
