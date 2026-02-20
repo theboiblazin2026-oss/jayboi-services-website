@@ -178,6 +178,26 @@
     <priority>0.6</priority>
   </url>
   
+  <!-- New Long-Tail Blog Posts -->
+  <url>
+    <loc>https://jayboiservicesllc.com/blog/mc-authority-cost-georgia.html</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jayboiservicesllc.com/blog/fmcsa-clearinghouse-prohibited.html</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://jayboiservicesllc.com/blog/amend-form-2290-weight-increase.html</loc>
+    <lastmod>2026-02-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
   <!-- Portal & Auth (Lower Priority) -->
   <url>
     <loc>https://jayboiservicesllc.com/driver-login.html</loc>
