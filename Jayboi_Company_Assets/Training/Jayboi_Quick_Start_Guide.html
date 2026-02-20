@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>quick_start_guide</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#jayboi-services-llc---quick-start-guide"
+id="toc-jayboi-services-llc---quick-start-guide">Jayboi Services, LLC -
+Quick Start Guide</a>
+<ul>
+<li><a href="#table-of-contents" id="toc-table-of-contents">📋 Table of
+Contents</a></li>
+<li><a href="#mcdot-authority-setup"
+id="toc-mcdot-authority-setup">MC/DOT Authority Setup</a></li>
+<li><a href="#driver-qualification-file-dqf"
+id="toc-driver-qualification-file-dqf">Driver Qualification File
+(DQF)</a></li>
+<li><a href="#drug-alcohol-consortium"
+id="toc-drug-alcohol-consortium">Drug &amp; Alcohol Consortium</a></li>
+<li><a href="#ucr-registration" id="toc-ucr-registration">UCR
+Registration</a></li>
+<li><a href="#filing" id="toc-filing">2290 Filing</a></li>
+<li><a href="#dispatching-services"
+id="toc-dispatching-services">Dispatching Services</a></li>
+<li><a href="#compliance-services"
+id="toc-compliance-services">Compliance Services</a></li>
+<li><a href="#essential-websites-at-a-glance"
+id="toc-essential-websites-at-a-glance">🔍 Essential Websites at a
+Glance</a></li>
+<li><a href="#emergency-contacts" id="toc-emergency-contacts">📞
+Emergency Contacts</a></li>
+<li><a href="#critical-deadlines" id="toc-critical-deadlines">⏰
+Critical Deadlines</a></li>
+<li><a href="#pro-tips" id="toc-pro-tips">💡 Pro Tips</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 id="jayboi-services-llc---quick-start-guide">Jayboi Services, LLC -
+Quick Start Guide</h1>
+<p><strong>Fast-Track Service Completion with Direct Links</strong></p>
+<hr />
+<h2 id="table-of-contents">📋 Table of Contents</h2>
+<ol type="1">
+<li><a href="#mcdot-authority-setup">MC/DOT Authority Setup</a></li>
+<li><a href="#driver-qualification-file-dqf">Driver Qualification File
+(DQF)</a></li>
+<li><a href="#drug--alcohol-consortium">Drug &amp; Alcohol
+Consortium</a></li>
+<li><a href="#ucr-registration">UCR Registration</a></li>
+<li><a href="#2290-filing">2290 Filing</a></li>
+<li><a href="#dispatching-services">Dispatching Services</a></li>
+<li><a href="#compliance-services">Compliance Services</a></li>
+</ol>
+<hr />
+<h2 id="mcdot-authority-setup">MC/DOT Authority Setup</h2>
+<p><strong>Fee:</strong> $900 + $300 FMCSA<br />
+<strong>Timeline:</strong> 7-21 days</p>
+<h3 id="direct-links">🔗 Direct Links</h3>
+<ul>
+<li><strong>Filing Portal:</strong> <a
+href="https://li-public.fmcsa.dot.gov/LIVIEW/pkg_uis_landing.prc_login"
+class="uri">https://li-public.fmcsa.dot.gov/LIVIEW/pkg_uis_landing.prc_login</a></li>
+<li><strong>SAFER Monitor:</strong> <a
+href="https://safer.fmcsa.dot.gov"
+class="uri">https://safer.fmcsa.dot.gov</a></li>
+<li><strong>IRS EIN Verify:</strong> <a
+href="https://www.irs.gov/businesses/small-businesses-self-employed/employer-id-numbers"
+class="uri">https://www.irs.gov/businesses/small-businesses-self-employed/employer-id-numbers</a></li>
+</ul>
+<h3 id="quick-steps">✅ Quick Steps</h3>
+<p><strong>Step 1: Gather Info (Day 1)</strong></p>
+<ul>
+<li>Legal business name &amp; EIN</li>
+<li>Business address</li>
+<li>Cargo types</li>
+<li>Officer names/DOB</li>
+<li>Payment card</li>
+</ul>
+<p><strong>Step 2: File Application (Day 2-3)</strong></p>
+<ol type="1">
+<li>Go to: <a
+href="https://li-public.fmcsa.dot.gov/LIVIEW/pkg_uis_landing.prc_login"
+class="uri">https://li-public.fmcsa.dot.gov/LIVIEW/pkg_uis_landing.prc_login</a></li>
+<li>Click “Register” → Create account with EIN</li>
+<li>Complete MCS-150 form (company info, cargo types)</li>
+<li>Complete OP-1 (operating authority)</li>
+<li>File BOC-3 (process agent)</li>
+<li>Pay $300 → Submit</li>
+<li>Save USDOT# and MC#</li>
+</ol>
+<p><strong>Step 3: Insurance &amp; Activation (Day 4-21)</strong></p>
+<ol type="1">
+<li>Customer gets insurance ($750K minimum)</li>
+<li>Insurance broker files BMC-91X with FMCSA</li>
+<li>Monitor at: <a href="https://safer.fmcsa.dot.gov"
+class="uri">https://safer.fmcsa.dot.gov</a> (check daily)</li>
+<li>When status = “Authorized” → Download authority letter</li>
+<li>Send customer: MC#, DOT#, SAFER snapshot</li>
+</ol>
+<hr />
+<h2 id="driver-qualification-file-dqf">Driver Qualification File
+(DQF)</h2>
+<p><strong>Fee:</strong> $223/year or $40/month<br />
+<strong>Timeline:</strong> 3-5 days</p>
+<h3 id="direct-links-1">🔗 Direct Links</h3>
+<ul>
+<li><strong>Medical Examiner Registry:</strong> <a
+href="https://nationalregistry.fmcsa.dot.gov"
+class="uri">https://nationalregistry.fmcsa.dot.gov</a></li>
+<li><strong>Clearinghouse:</strong> <a
+href="https://clearinghouse.fmcsa.dot.gov"
+class="uri">https://clearinghouse.fmcsa.dot.gov</a></li>
+</ul>
+<h3 id="quick-steps-1">✅ Quick Steps</h3>
+<p><strong>Step 1: Get Documents</strong></p>
+<ul>
+<li>Driver’s license (front/back)</li>
+<li>3-year MVR (motor vehicle record)</li>
+<li>Previous employer info (3 years)</li>
+<li>DOT physical certificate</li>
+<li>Drug test results</li>
+</ul>
+<p><strong>Step 2: Build File</strong></p>
+<ol type="1">
+<li>Employment application (§391.21)</li>
+<li>Order MVR from state DMV</li>
+<li>Send inquiries to previous employers</li>
+<li>Get road test OR previous employer certificate</li>
+<li>Verify medical examiner at: <a
+href="https://nationalregistry.fmcsa.dot.gov"
+class="uri">https://nationalregistry.fmcsa.dot.gov</a></li>
+<li>Schedule DOT drug test</li>
+</ol>
+<p><strong>Step 3: Annual Maintenance</strong></p>
+<ul>
+<li>Set calendar reminder for 12 months</li>
+<li>Update MVR annually</li>
+<li>Track medical cert expiration</li>
+<li>Document all violations/accidents</li>
+</ul>
+<hr />
+<h2 id="drug-alcohol-consortium">Drug &amp; Alcohol Consortium</h2>
+<p><strong>Fee:</strong> $100/year<br />
+<strong>Timeline:</strong> Immediate</p>
+<h3 id="direct-links-2">🔗 Direct Links</h3>
+<ul>
+<li><strong>Clearinghouse:</strong> <a
+href="https://clearinghouse.fmcsa.dot.gov"
+class="uri">https://clearinghouse.fmcsa.dot.gov</a></li>
+<li><strong>Clearinghouse Login:</strong> <a
+href="https://clearinghouse.fmcsa.dot.gov/login"
+class="uri">https://clearinghouse.fmcsa.dot.gov/login</a></li>
+</ul>
+<h3 id="quick-steps-2">✅ Quick Steps</h3>
+<p><strong>Step 1: Enroll Customer</strong></p>
+<ul>
+<li>Company info + MC/DOT#</li>
+<li>Driver roster (names, DOB, contact)</li>
+<li>Designate DER (employer rep)</li>
+<li>Set up login credentials</li>
+</ul>
+<p><strong>Step 2: Random Testing</strong></p>
+<ol type="1">
+<li>Use random selection software (50% drug, 10% alcohol annually)</li>
+<li>Notify DER of selected drivers</li>
+<li>Driver goes to collection site within timeframe</li>
+<li>Results sent to MRO (Medical Review Officer)</li>
+</ol>
+<p><strong>Step 3: Report &amp; Track</strong></p>
+<ul>
+<li>Register at: <a href="https://clearinghouse.fmcsa.dot.gov"
+class="uri">https://clearinghouse.fmcsa.dot.gov</a></li>
+<li>Query drivers before hiring</li>
+<li>Report positives within 2 business days</li>
+<li>Keep records 5 years</li>
+</ul>
+<hr />
+<h2 id="ucr-registration">UCR Registration</h2>
+<p><strong>Fee:</strong> $76-$74,543 (by fleet size)<br />
+<strong>Timeline:</strong> Same day</p>
+<h3 id="direct-links-3">🔗 Direct Links</h3>
+<ul>
+<li><strong>Main Portal:</strong> <a href="https://www.ucr.gov"
+class="uri">https://www.ucr.gov</a></li>
+<li><strong>California:</strong> <a
+href="https://www.california-ucr.org"
+class="uri">https://www.california-ucr.org</a></li>
+<li><strong>Texas:</strong> <a href="https://www.texas-ucr.org"
+class="uri">https://www.texas-ucr.org</a></li>
+<li><strong>Florida:</strong> <a href="https://www.flhsmv.gov/ucr"
+class="uri">https://www.flhsmv.gov/ucr</a></li>
+<li><strong>All States:</strong> <a
+href="https://www.ucr.gov/getting_started/state_contacts.php"
+class="uri">https://www.ucr.gov/getting_started/state_contacts.php</a></li>
+</ul>
+<h3 id="quick-steps-3">✅ Quick Steps</h3>
+<p><strong>Step 1: Determine Fee</strong></p>
+<ul>
+<li>0-2 vehicles: $76</li>
+<li>3-5 vehicles: $230</li>
+<li>6-20 vehicles: $691</li>
+<li>21-100 vehicles: $3,459</li>
+<li>[See full table in detailed guide]</li>
+</ul>
+<p><strong>Step 2: File (Same Day)</strong></p>
+<ol type="1">
+<li>Go to your state portal: <a href="https://www.ucr.gov"
+class="uri">https://www.ucr.gov</a></li>
+<li>Create account with USDOT#</li>
+<li>Enter business info</li>
+<li>Select registration year</li>
+<li>Input fleet size</li>
+<li>Pay with card → Submit</li>
+</ol>
+<p><strong>Step 3: Deliver Proof</strong></p>
+<ul>
+<li>Download receipt immediately</li>
+<li>Email to customer (same day)</li>
+<li>Set reminder for next December renewal</li>
+</ul>
+<hr />
+<h2 id="filing">2290 Filing</h2>
+<p><strong>Fee:</strong> $69.99-$100 + IRS tax<br />
+<strong>Timeline:</strong> Same day</p>
+<h3 id="direct-links-choose-one">🔗 Direct Links (Choose One)</h3>
+<ul>
+<li><strong>ExpressHTUT:</strong> <a href="https://www.expresshvut.com"
+class="uri">https://www.expresshvut.com</a> (~$7-10/vehicle)</li>
+<li><strong>EasyForm2290:</strong> <a
+href="https://www.easyform2290.com"
+class="uri">https://www.easyform2290.com</a> ($69.99)</li>
+<li><strong>TaxExcise:</strong> <a href="https://www.taxexcise.com"
+class="uri">https://www.taxexcise.com</a> ($7.90+)</li>
+<li><strong>Form2290.com:</strong> <a href="https://www.form2290.com"
+class="uri">https://www.form2290.com</a> ($9.90+)</li>
+</ul>
+<h3 id="tax-table-2026">💰 Tax Table (2026)</h3>
+<table>
+<thead>
+<tr>
+<th>Weight</th>
+<th>Annual Tax</th>
+<th>Monthly</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>55,000 lbs</td>
+<td>$100</td>
+<td>~$8</td>
+</tr>
+<tr>
+<td>60,000-62,000</td>
+<td>$550</td>
+<td>~$46</td>
+</tr>
+<tr>
+<td>65,000 lbs</td>
+<td>$600</td>
+<td>~$50</td>
+</tr>
+<tr>
+<td>80,000 lbs</td>
+<td>$800</td>
+<td>~$67</td>
+</tr>
+</tbody>
+</table>
+<h3 id="quick-steps-4">✅ Quick Steps</h3>
+<p><strong>Step 1: Collect Info</strong></p>
+<ul>
+<li>EIN (9 digits)</li>
+<li>VIN (17 characters) - verify carefully!</li>
+<li>Gross weight (from registration)</li>
+<li>First use month</li>
+<li>Payment card</li>
+</ul>
+<p><strong>Step 2: File (Same Day)</strong></p>
+<ol type="1">
+<li>Go to: <a href="https://www.expresshvut.com"
+class="uri">https://www.expresshvut.com</a> (recommended)</li>
+<li>Create account → Login</li>
+<li>Enter EIN and business name</li>
+<li>Add vehicle: VIN, weight category, first use month</li>
+<li>Review tax calculation</li>
+<li>Pay with card → Submit</li>
+</ol>
+<p><strong>Step 3: Deliver Schedule 1</strong></p>
+<ul>
+<li>Download Schedule 1 proof (within minutes)</li>
+<li>Email to customer immediately</li>
+<li>Explain: Keep in vehicle + needed for DMV registration</li>
+<li>Set reminder for July renewal</li>
+</ul>
+<hr />
+<h2 id="dispatching-services">Dispatching Services</h2>
+<p><strong>Fee:</strong> 8-10% of revenue<br />
+<strong>Timeline:</strong> Daily operations</p>
+<h3 id="direct-links-4">🔗 Direct Links</h3>
+<ul>
+<li><strong>DAT Load Board:</strong> <a href="https://www.dat.com"
+class="uri">https://www.dat.com</a></li>
+<li><strong>Truckstop:</strong> <a href="https://www.truckstop.com"
+class="uri">https://www.truckstop.com</a></li>
+<li><strong>123Loadboard:</strong> <a
+href="https://www.123loadboard.com"
+class="uri">https://www.123loadboard.com</a></li>
+<li><strong>SAFER (check authority):</strong> <a
+href="https://safer.fmcsa.dot.gov"
+class="uri">https://safer.fmcsa.dot.gov</a></li>
+</ul>
+<h3 id="quick-daily-process">✅ Quick Daily Process</h3>
+<p><strong>Morning (6-9 AM):</strong></p>
+<ol type="1">
+<li>Check driver availability</li>
+<li>Review Hours of Service (HOS)</li>
+<li>Note locations and load needs</li>
+</ol>
+<p><strong>Search &amp; Book (9 AM-12 PM):</strong></p>
+<ol type="1">
+<li>Log into load boards (DAT, Truckstop)</li>
+<li>Search by: driver location, equipment type, rate</li>
+<li>Calculate: True RPM = Revenue ÷ (loaded miles + deadhead)</li>
+<li>Call broker → Negotiate rate</li>
+<li>Get rate confirmation (RC) via email</li>
+<li>Assign load to driver</li>
+</ol>
+<p><strong>In Transit:</strong></p>
+<ul>
+<li>Pickup confirmation (get BOL#)</li>
+<li>En-route check-ins</li>
+<li>Delivery confirmation (get POD)</li>
+</ul>
+<p><strong>Invoice (Same Day):</strong></p>
+<ol type="1">
+<li>Gather: RC, BOL, POD</li>
+<li>Create invoice matching RC exactly</li>
+<li>Submit to broker AP</li>
+<li>Track in spreadsheet</li>
+</ol>
+<p><strong>Collections:</strong></p>
+<ul>
+<li>QuickPay: 24-48 hours</li>
+<li>Standard: 30 days</li>
+<li>Follow up: Day 31, 45, 60</li>
+</ul>
+<hr />
+<h2 id="compliance-services">Compliance Services</h2>
+<h3 id="boc-3-filing-75">BOC-3 Filing ($75)</h3>
+<p><strong>Link:</strong> <a href="https://li-public.fmcsa.dot.gov"
+class="uri">https://li-public.fmcsa.dot.gov</a><br />
+<strong>Steps:</strong></p>
+<ol type="1">
+<li>Use process agent service</li>
+<li>File BOC-3 in FMCSA portal</li>
+<li>No extra fee from FMCSA</li>
+</ol>
+<h3 id="mcs-150-update-150">MCS-150 Update ($150)</h3>
+<p><strong>Link:</strong> <a href="https://li-public.fmcsa.dot.gov"
+class="uri">https://li-public.fmcsa.dot.gov</a><br />
+<strong>Steps:</strong></p>
+<ol type="1">
+<li>Login to FMCSA portal</li>
+<li>Update fleet size, operations, mileage</li>
+<li>Submit electronically</li>
+</ol>
+<h3 id="ifta-license-irp-399">IFTA License &amp; IRP ($399)</h3>
+<p><strong>Link:</strong> State-specific<br />
+<strong>Steps:</strong></p>
+<ol type="1">
+<li>Apply in base jurisdiction</li>
+<li>Provide fleet info</li>
+<li>Order IFTA decals</li>
+<li>Set up quarterly reporting</li>
+</ol>
+<hr />
+<h2 id="essential-websites-at-a-glance">🔍 Essential Websites at a
+Glance</h2>
+<h3 id="filing-portals">Filing Portals</h3>
+<ul>
+<li><strong>FMCSA (MC/DOT, BOC-3, MCS-150):</strong> <a
+href="https://li-public.fmcsa.dot.gov/LIVIEW/pkg_uis_landing.prc_login"
+class="uri">https://li-public.fmcsa.dot.gov/LIVIEW/pkg_uis_landing.prc_login</a></li>
+<li><strong>UCR (registration):</strong> <a href="https://www.ucr.gov"
+class="uri">https://www.ucr.gov</a></li>
+<li><strong>2290 Filing:</strong> <a href="https://www.expresshvut.com"
+class="uri">https://www.expresshvut.com</a></li>
+<li><strong>Drug Clearinghouse:</strong> <a
+href="https://clearinghouse.fmcsa.dot.gov"
+class="uri">https://clearinghouse.fmcsa.dot.gov</a></li>
+</ul>
+<h3 id="verification-monitoring">Verification &amp; Monitoring</h3>
+<ul>
+<li><strong>SAFER System:</strong> <a href="https://safer.fmcsa.dot.gov"
+class="uri">https://safer.fmcsa.dot.gov</a></li>
+<li><strong>Medical Examiner Registry:</strong> <a
+href="https://nationalregistry.fmcsa.dot.gov"
+class="uri">https://nationalregistry.fmcsa.dot.gov</a></li>
+<li><strong>IRS EIN Verification:</strong> <a
+href="https://www.irs.gov/businesses/small-businesses-self-employed/employer-id-numbers"
+class="uri">https://www.irs.gov/businesses/small-businesses-self-employed/employer-id-numbers</a></li>
+</ul>
+<h3 id="load-boards">Load Boards</h3>
+<ul>
+<li><strong>DAT:</strong> <a href="https://www.dat.com"
+class="uri">https://www.dat.com</a></li>
+<li><strong>Truckstop:</strong> <a href="https://www.truckstop.com"
+class="uri">https://www.truckstop.com</a></li>
+<li><strong>123Loadboard:</strong> <a
+href="https://www.123loadboard.com"
+class="uri">https://www.123loadboard.com</a></li>
+</ul>
+<hr />
+<h2 id="emergency-contacts">📞 Emergency Contacts</h2>
+<ul>
+<li><strong>FMCSA Support:</strong> 1-800-832-5660</li>
+<li><strong>IRS 2290 Help:</strong> 1-866-699-4096</li>
+<li><strong>Drug Testing Clearinghouse:</strong> 1-800-832-5660</li>
+</ul>
+<hr />
+<h2 id="critical-deadlines">⏰ Critical Deadlines</h2>
+<table>
+<thead>
+<tr>
+<th>When</th>
+<th>What</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Every 2 years</td>
+<td>MCS-150 Update</td>
+<td>Login to FMCSA portal</td>
+</tr>
+<tr>
+<td>Dec 31 annually</td>
+<td>UCR Registration</td>
+<td>File at state portal</td>
+</tr>
+<tr>
+<td>Aug 31 annually</td>
+<td>2290 Filing</td>
+<td>File for July renewals</td>
+</tr>
+<tr>
+<td>Annually</td>
+<td>MVR Review</td>
+<td>Order from state DMV</td>
+</tr>
+<tr>
+<td>Within 72 hours</td>
+<td>Pre-employment drug test</td>
+<td>Before driver operates</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="pro-tips">💡 Pro Tips</h2>
+<p><strong>For Speed:</strong></p>
+<ol type="1">
+<li>Bookmark all portal links above</li>
+<li>Save login credentials in password manager</li>
+<li>Keep template emails ready</li>
+<li>Use master tracking spreadsheet</li>
+<li>Set calendar reminders 30 days early</li>
+</ol>
+<p><strong>For Accuracy:</strong></p>
+<ul>
+<li>Verify VINs twice (common errors: O vs 0, I vs 1)</li>
+<li>Match business names EXACTLY to state/IRS records</li>
+<li>Save confirmation numbers immediately</li>
+<li>Screenshot every submission</li>
+</ul>
+<p><strong>For Customer Satisfaction:</strong></p>
+<ul>
+<li>Same-day delivery of proof documents</li>
+<li>Proactive renewal reminders</li>
+<li>Weekly status updates during processing</li>
+<li>4-hour response time to questions</li>
+</ul>
+<hr />
+<p><strong>Quick Start Guide v1.0</strong><br />
+<strong>For detailed procedures, see:</strong> Full Service Training
+Guide<br />
+<strong>Last Updated:</strong> January 10, 2026</p>
+</body>
+</html>

@@ -4,6 +4,11 @@ const { onRequest, onCall, HttpsError } = require('firebase-functions/v2/https')
 const { defineSecret } = require('firebase-functions/params');
 const admin = require('firebase-admin');
 const { vertexAI, gemini20Flash } = require('@genkit-ai/vertexai');
+const { GoogleSpreadsheet } = require('google-spreadsheet');
+const { JWT } = require('google-auth-library');
+
+// Define secret for Google Sheets credentials (contains full service account JSON)
+const sheetsServiceAccountJson = defineSecret('GOOGLE_SERVICE_ACCOUNT_JSON');
 
 // Initialize Firebase Admin
 if (admin.apps.length === 0) {
@@ -442,3 +447,101 @@ exports.updateUserPassword = onCall(async (request) => {
         throw new HttpsError('internal', error.message);
     }
 });
+
+// --- Google Sheets Integration ---
+// Form submission to Google Sheets
+const SPREADSHEET_ID = '1fw16e4MYXev2W2Yo-flQxaai77hUkC7cILUccCp8dUY';
+
+// Force redeploy 2026-01-21
+exports.submitToGoogleSheets = onRequest(
+    {
+        secrets: [sheetsServiceAccountJson],
+        cors: true  // Enable CORS for frontend requests
+    },
+    async (req, res) => {
+        // Handle preflight requests
+        if (req.method === 'OPTIONS') {
+            res.set('Access-Control-Allow-Origin', '*');
+            res.set('Access-Control-Allow-Methods', 'POST, OPTIONS');
+            res.set('Access-Control-Allow-Headers', 'Content-Type');
+            res.status(204).send('');
+            return;
+        }
+
+        if (req.method !== 'POST') {
+            res.status(405).json({ error: 'Method Not Allowed' });
+            return;
+        }
+
+        try {
+            const { name, email, phone, service, message, source, business, dot } = req.body;
+
+            // Validate required fields
+            if (!name || !email) {
+                res.status(400).json({ error: 'Name and email are required' });
+                return;
+            }
+
+            // Parse the service account JSON from the secret
+            const serviceAccountCreds = JSON.parse(sheetsServiceAccountJson.value());
+
+            // Create JWT auth using the parsed credentials
+            const serviceAccountAuth = new JWT({
+                email: serviceAccountCreds.client_email,
+                key: serviceAccountCreds.private_key,
+                scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+            });
+
+            // Connect to the spreadsheet
+            const doc = new GoogleSpreadsheet(SPREADSHEET_ID, serviceAccountAuth);
+            await doc.loadInfo();
+
+            // Get or create the sheet (use first sheet or create one)
+            let sheet = doc.sheetsByIndex[0];
+
+            // Setup headers if needed
+            await sheet.loadHeaderRow();
+            const headers = sheet.headerValues;
+
+            // Check if we need to add new columns (Business, DOT)
+            // Note: This simple check assumes if length is small, we're missing columns. 
+            // Better to rely on the user adding them or just append if possible.
+            // For now, we'll map the data to the expected header names. 
+            // If the user hasn't added "Business Name" and "DOT Number" columns, these values won't save.
+
+            // Add the new row
+            const timestamp = new Date().toLocaleString('en-US', {
+                timeZone: 'America/New_York',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+
+            await sheet.addRow({
+                'Timestamp': timestamp,
+                'Name': name || '',
+                'Business Name': business || '',
+                'Email': email || '',
+                'Phone': phone || '',
+                'DOT Number': dot || '',
+                'Service': service || 'General Inquiry',
+                'Message': message || '',
+                'Source': source || 'Contact Form',
+                'Status': 'New'
+            });
+
+            console.log(`New lead added to Google Sheets: ${email}`);
+            res.json({ success: true, message: 'Form submitted successfully!' });
+
+        } catch (error) {
+            console.error('Error submitting to Google Sheets:', error);
+            res.status(500).json({
+                error: 'Failed to submit form. Please try again or contact us directly.',
+                details: error.message
+            });
+        }
+    }
+);

@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Portal | Jayboi Services</title>
+    <meta name="description"
+        content="Secure client portal for Jayboi Services customers. Upload driver files, manage compliance, and track service requests.">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -12,6 +14,19 @@
             background: var(--primary);
             display: flex;
             min-height: 100vh;
+        }
+
+        /* Accessibly hidden H1 */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
 
         /* Sidebar */
@@ -163,9 +178,11 @@
 
         gtag('config', 'G-N2NFX78MXW');
     </script>
+    <link rel="icon" type="image/png" href="./logo-transparent.png">
 </head>
 
 <body>
+    <h1 class="sr-only">Jayboi Services Client Portal</h1>
     <div class="sidebar">
         <div class="sidebar-logo">Client Portal</div>
         <div class="nav-item active" data-target="dashboard">Dashboard</div>
@@ -192,7 +209,8 @@
                         <button onclick="markAllRead()" class="btn-link">Mark all read</button>
                     </div>
                     <div id="notification-list" class="notification-list">
-                        <div style="padding: 1rem; text-align: center; color: var(--text-gray);">No new notifications
+                        <div style="padding: 1rem; text-align: center; color: var(--text-gray);">No new
+                            notifications
                         </div>
                     </div>
                 </div>
@@ -251,7 +269,8 @@
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                     <div>
                         <h3 style="margin-bottom: 0.25rem;">Your Driver Files</h3>
-                        <p style="color: var(--text-gray); margin: 0;">Upload from Camera, Gallery, or Cloud (Google
+                        <p style="color: var(--text-gray); margin: 0;">Upload from Camera, Gallery, or Cloud
+                            (Google
                             Drive/iCloud).</p>
                     </div>
                     <button id="upload-btn" class="btn btn-primary"
@@ -271,7 +290,8 @@
                             <p id="selected-file-name" style="margin: 0; color: var(--accent);"></p>
                         </div>
                         <div style="min-width: 180px;">
-                            <label style="font-size: 0.85rem; color: var(--text-gray);">Document Category</label>
+                            <label style="font-size: 0.85rem; color: var(--text-gray);">Document
+                                Category</label>
                             <select id="file-category"
                                 style="width: 100%; padding: 0.5rem; background: var(--secondary); border: 1px solid var(--tertiary); color: var(--text-light); border-radius: 4px;">
                                 <option value="permit">Permit / Authority</option>
@@ -333,7 +353,8 @@
         <div id="section-requests" class="content-section">
             <div class="card-panel">
                 <h3>Submit a Service Request</h3>
-                <p style="margin-bottom: 2rem;">Fill out the form below to request a new service. We will process it
+                <p style="margin-bottom: 2rem;">Fill out the form below to request a new service. We will
+                    process it
                     immediately.</p>
 
                 <form action="https://formspree.io/f/xgoeldlb" method="POST">
@@ -368,7 +389,8 @@
                     <input type="hidden" name="_subject" value="New Client Portal Request">
                     <input type="hidden" name="user_email" id="form-user-email">
 
-                    <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Submit Request</button>
+                    <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Submit
+                        Request</button>
                 </form>
             </div>
         </div>
@@ -926,6 +948,7 @@
 
 
     </script>
+    <script src="js/contact_form_handler.js"></script>
 </body>
 
 </html>
