@@ -41,7 +41,7 @@
 
 **Visual:** Jayboi Services Logo on a black/navy background. Phone number and website animated in.
 **Audio (Voiceover):** "Jayboi Services. Your partner in fleet success. Visit us today at JayboiServicesLLC.com."
-**Text Overlay:** 470-484-4814  |  JayboiServicesLLC.com
+**Text Overlay:** 470-866-1408  |  JayboiServicesLLC.com
 
 ---
 

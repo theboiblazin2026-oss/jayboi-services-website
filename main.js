@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }, 2000);
             } else {
                 console.error("All submissions failed:", errors);
-                showToast('There was an issue submitting your request. Please call us directly at 470-484-4814.', 'error');
+                showToast('There was an issue submitting your request. Please call us directly at 470-866-1408.', 'error');
                 submitButton.textContent = originalButtonText;
                 submitButton.disabled = false;
             }

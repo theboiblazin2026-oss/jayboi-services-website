@@ -290,12 +290,12 @@
             } else {
                 // Both failed
                 console.error('Both submissions failed:', sheetsResult.reason, formspreeResult.reason);
-                showMessage('There was an error sending your message. Please call us at 470-484-4814', 'error');
+                showMessage('There was an error sending your message. Please call us at 470-866-1408', 'error');
             }
 
         } catch (error) {
             console.error('Form submission error:', error);
-            showMessage('There was an error sending your message. Please call us at 470-484-4814', 'error');
+            showMessage('There was an error sending your message. Please call us at 470-866-1408', 'error');
         } finally {
             // Re-enable submit button
             if (submitBtn) {
